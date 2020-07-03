@@ -16,3 +16,6 @@ Bootstrap 4
 * MySQL
 * jQuery / jQuery UI
 
+Architecture Diagram
+
+![Image of Architecture](https://github.com/dkeech/tomato/blob/master/architecture_diagram.JPG)
