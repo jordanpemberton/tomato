@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>No Time Like Tomato</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">No Time like Tomato</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse pull-right justify-content-end" id="navbarText">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Timer <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Login</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Signup</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    
+    <div class="container" style="padding-bottom: 20%; font-size: large;"> Task Creation
+      <form style="border: 1px solid black; padding: 2%;">
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="category"> Create a new Category</label>
+            <input type="text" class="form-control" id="category" placeholder="Enter a Category or select from the list to the right">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputState"> Or select from already created categories</label>
+            <select id="inputState" class="form-control">
+              <option selected>Choose...</option>
+              <option>...</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row display-inline">
+          <div class="form-group col-md-6">
+            <label for="task_name"> Make a Task name</label>
+            <input type="text" class="form-control" id="task_name" placeholder="Enter a task">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="submit"> Now create your task!</label>
+            <button type="submit" class="btn btn-primary form-control">Create Task</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+
+
+    <div class="container" style="border: solid 1px black; height: 500px;">
+      <form class="form-inline justify-content-center" style="padding-bottom: 30px;">
+        <div class="form-group col-md-5">
+          <label for="inputState">Choose your Task</label>
+            <select id="inputState" style="margin-left: 10px;" class="form-control">
+              <option selected>Choose...</option>
+              <option>...</option>
+            </select>
+        </div>
+      </form>
+
+      <div class="row h-75 justify-content-center" id="timer_container">
+        <div class="col-md-6" style="border: solid black 1px;">
+          Timer
+        </div>
+      </div>
+
+      <div class="row display-inline justify-content-center" id="button_container">
+        <div class="col-md-2">
+          <button type="button" class="btn btn-success">Start</button>
+        </div>
+        <div class="col-md-2">
+          <button type="button" class="btn btn-warning">Pause</button>
+        </div>
+        <div class="col-md-2">
+          <button type="button" class="btn btn-danger">Skip</button>
+        </div>
+      </div>
+
+
+
+      
+      
+
+
+
+
+
+
+
+
+    </div>
+
+    
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
