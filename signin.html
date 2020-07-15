@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Timer</title>
+    <title>Sign in</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
@@ -23,61 +23,34 @@
               <a class="nav-link" href="#">Sign in</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Sign up</a>
+              <a class="nav-link" href="#">Signup</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Tasks</a>
-          </li>
+                <a class="nav-link" href="#">Tasks</a>
+            </li>
           </ul>
         </div>
       </nav>
+
+    <!-- Start Form Module here -->
+    <div class="col-md-4 signIn">
+        <form>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Sign In</label>
+              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+              
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Password</label>
+              <input type="password" class="form-control" id="password" placeholder="Password">
+            </div>
+            
+            <button type="submit" class="btn btn-primary">Sign In</button>
+            <p id="noAccount" class="form-text text-muted" >No account? </p>
+            <button type="submit" class="btn btn-primary">Create One</button>
+          </form>
+          </div>
     
-  
-
-
-    <div class="container" style="border: solid 1px black; height: 500px;">
-      <form class="form-inline justify-content-center" style="padding-bottom: 30px;">
-        <div class="form-group col-md-5">
-          <label for="inputState">Choose your Task</label>
-            <select id="inputState" style="margin-left: 10px;" class="form-control">
-              <option selected>Choose...</option>
-              <option>...</option>
-            </select>
-        </div>
-      </form>
-
-      <div class="row h-75 justify-content-center" id="timer_container">
-        <div class="col-md-6" style="border: solid black 1px;">
-          Timer
-        </div>
-      </div>
-
-      <div class="row display-inline justify-content-center" id="button_container">
-        <div class="col-md-2">
-          <button type="button" class="btn btn-success">Start</button>
-        </div>
-        <div class="col-md-2">
-          <button type="button" class="btn btn-warning">Pause</button>
-        </div>
-        <div class="col-md-2">
-          <button type="button" class="btn btn-danger">Skip</button>
-        </div>
-      </div>
-
-
-
-      
-      
-
-
-
-
-
-
-
-
-    </div>
-
     
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
