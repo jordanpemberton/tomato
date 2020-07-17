@@ -1,0 +1,45 @@
+{
+  "name": "tomato",
+  "version": "1.0.0",
+  "description": "Tomato - A time management system based on Pomedero ",
+  "main": "server.js",
+  "directories": {
+    "doc": "docs",
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dkeech/tomato.git"
+  },
+  "keywords": [
+    "tomato",
+    "pomedero"
+  ],
+  "author": "Casey Dinsmore",
+  "contributors": [
+    {
+      "name": "Kepe Bonner"
+    },
+    {
+      "name": "Jordan Pemberton"
+    },
+    {
+      "name": "Devin Swanson"
+    },
+    {
+      "name": "Dan Keech"
+    }
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dkeech/tomato/issues"
+  },
+  "homepage": "https://github.com/dkeech/tomato#readme",
+  "dependencies": {
+    "express": "^4.17.0",
+    "mysql": "^2.17.1"
+  }
+}
