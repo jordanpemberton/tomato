@@ -23,35 +23,36 @@
     <div class="collapse navbar-collapse pull-right justify-content-end" id="navbarText">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="#">Timer <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="timer.html">Timer <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Sign in</a>
+          <a class="nav-link" href="category.html">Category</a>
+      </li>
+        
+        <li class="nav-item">
+            <a class="nav-link" href="tasks.html">Tasks</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Signup</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">Tasks</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">Account</a>
+            <a class="nav-link" href="account.html">Account</a>
         </li>
       </ul>
     </div>
   </nav>
 
       <div class="container" style="padding-bottom: 20%; font-size: large;"> 
+        <h1>Tasks</h1>
         <form >
           <div class="form-row">
             <div class="form-group col-md-6">
-              <label for="category" class="pt-5"> Create a new Category</label>
-              <input type="text" class="form-control" id="category" placeholder="Enter a new Category here">
-            
-              <label for="inputState" class="pt-3"> Or select one</label>
+              
+              <label for="category" class="pt-5"> Select Category</label>
               <select id="inputState" class="form-control">
                 <option selected>Choose...</option>
                 <option>...</option>
+                <option>Class 1</option>
+                <option>Class 2</option>
+                <option>Class 3</option>
+                <option>Work 1</option>
               </select>
             </div>
           </div>
@@ -67,7 +68,53 @@
                 <label for="submit" class="pt-3"> Now create your task!</label>
                 <button type="submit" class="btn btn-primary d-block">Create Task</button>
             </div>
-            
+            <div class="col-md-6">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Category</th>
+                    <th scope="col">Task</th>
+                    <th scope="col">Goal Time</th>
+                    <th scope="col">Time Accrued</th>
+
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">Homework</th>
+                    <td data-toggle="tooltip" data-placement="bottom" 
+                    title="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+                    ">Read Chapter 2</td>
+                    <td >1:00</td>
+                    <td >0:25</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Study for Quiz</th>
+                    <td data-toggle="tooltip" data-placement="bottom" 
+                    title="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+                    ">Read Notes</td>
+                    <td >2:00</td>
+                    <td >0:50</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Class 3</th>
+                    <td data-toggle="tooltip" data-placement="bottom" 
+                    title="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+                    ">Practice Questions</td>
+                    <td >3:00</td>
+                    <td >0:25</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Work 1</th>
+                    <td data-toggle="tooltip" data-placement="bottom" 
+                    title="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+                    ">Make Widget</td>
+                    <td >1:00</td>
+                    <td >0:25</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </form>
       </div>
@@ -76,5 +123,10 @@
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script>
+  $(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+</script>
 </body>
 </html>
