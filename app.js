@@ -39,6 +39,10 @@ app.get('/tasks', function(req, res){
     res.render('tasks.html');
 })
 
+app.get('/timer', function(req, res){
+    res.render('timer.html');
+})
+
 app.post('/', passport.authenticate('local', {
     successRedirect: '/tasks',
     failureRedirect: '/',
