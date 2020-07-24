@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tasks</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
   <style>
     .form-control {max-width: 400px;}
     .btn-primary {width: auto;}
@@ -22,15 +23,15 @@
     </button>
     <div class="collapse navbar-collapse pull-right justify-content-end" id="navbarText">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="timer.html">Timer <span class="sr-only">(current)</span></a>
+        <li class="nav-item ">
+          <a class="nav-link" href="timer.html">Timer</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="category.html">Category</a>
       </li>
         
-        <li class="nav-item">
-            <a class="nav-link" href="tasks.html">Tasks</a>
+        <li class="nav-item active">
+            <a class="nav-link" href="tasks.html">Tasks<span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="account.html">Account</a>
@@ -39,85 +40,98 @@
     </div>
   </nav>
 
-      <div class="container" style="padding-bottom: 20%; font-size: large;"> 
-        <h1>Tasks</h1>
-        <form >
-          <div class="form-row">
-            <div class="form-group col-md-6">
-              
-              <label for="category" class="pt-5"> Select Category</label>
-              <select id="inputState" class="form-control">
-                <option selected>Choose...</option>
-                <option>...</option>
-                <option>Class 1</option>
-                <option>Class 2</option>
-                <option>Class 3</option>
-                <option>Work 1</option>
-              </select>
-            </div>
-          </div>
-          <div class="form-row ">
-            <div class="form-group col-md-6">
-              <label for="taskName" class="pt-4">Task name</label>
-              <input type="text" class="form-control" id="task_name" placeholder="Enter a task">
-              <label for="taskGoal" class="pt-4 d-block">Task Goal</label>
-              <input type="number" min="0" class=" d-inline taskTime" id="task_hours" placeholder="Hours">
-              <input type="number" min="0" class=" d-inline taskTime" id="task_minutes" placeholder="Minutes" >
-                <label for="taskNotes" class="pt-3 d-block">Task Notes</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                <label for="submit" class="pt-3"> Now create your task!</label>
-                <button type="submit" class="btn btn-primary d-block">Create Task</button>
-            </div>
-            <div class="col-md-6">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th scope="col">Category</th>
-                    <th scope="col">Task</th>
-                    <th scope="col">Goal Time</th>
-                    <th scope="col">Time Accrued</th>
-
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th scope="row">Homework</th>
-                    <td data-toggle="tooltip" data-placement="bottom" 
-                    title="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-                    ">Read Chapter 2</td>
-                    <td >1:00</td>
-                    <td >0:25</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">Study for Quiz</th>
-                    <td data-toggle="tooltip" data-placement="bottom" 
-                    title="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-                    ">Read Notes</td>
-                    <td >2:00</td>
-                    <td >0:50</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">Class 3</th>
-                    <td data-toggle="tooltip" data-placement="bottom" 
-                    title="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-                    ">Practice Questions</td>
-                    <td >3:00</td>
-                    <td >0:25</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">Work 1</th>
-                    <td data-toggle="tooltip" data-placement="bottom" 
-                    title="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-                    ">Make Widget</td>
-                    <td >1:00</td>
-                    <td >0:25</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </form>
+  <div class="container" style="padding-bottom: 20%; font-size: large;"> 
+    <h1>Tasks</h1>
+    <form >
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          
+          <label for="category" class="pt-5"> Select Category</label>
+          <select id="inputState" class="form-control">
+            <option selected>Choose...</option>
+            <option>...</option>
+            <option>Class 1</option>
+            <option>Class 2</option>
+            <option>Class 3</option>
+            <option>Work 1</option>
+          </select>
+        </div>
       </div>
+      
+      <div class="form-row ">
+        <div class="form-group col-md-6">
+          <label for="taskName" class="pt-4">Task name</label>
+          <input type="text" class="form-control" id="task_name" placeholder="Enter a task">
+          <label for="taskGoal" class="pt-4 d-block">Task Goal</label>
+          <input type="number" min="0" class=" d-inline taskTime" id="task_hours" placeholder="Hours">
+          <input type="number" min="0" class=" d-inline taskTime" id="task_minutes" placeholder="Minutes" >
+            <label for="taskNotes" class="pt-3 d-block">Task Notes</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            <label for="submit" class="pt-3"> Now create your task!</label>
+            <button type="submit" class="btn btn-primary d-block">Create Task</button>
+        </div>
+        
+        <div class="col-md-6">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Category</th>
+                <th scope="col">Task</th>
+                <th scope="col">Goal Time</th>
+                <th scope="col">Time Accrued</th>
+                <th scope="col">Goal Met</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Homework</th>
+                <td data-toggle="tooltip" data-placement="bottom" 
+                title="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+                ">Read Chapter 2</td>
+                <td >1:00</td>
+                <td >1:25</td>
+                <td>
+                  <i title="Goal Met" class="fa fa-2x fa-check-circle" style="color: #0F9D58;"></i>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Study for Quiz</th>
+                <td data-toggle="tooltip" data-placement="bottom" 
+                title="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+                ">Read Notes</td>
+                <td >2:00</td>
+                <td >0:50</td>
+                <td>
+                  <i title="Goal Met" class="fa fa-2x fa-check-circle" style="color: #8e9499;"></i></td>
+              </tr>
+              <tr>
+                <th scope="row">Class 3</th>
+                <td data-toggle="tooltip" data-placement="bottom" 
+                title="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+                ">Practice Questions</td>
+                <td >3:00</td>
+                <td >0:25</td>
+                <td>
+                  <i title="Goal Met" class="fa fa-2x fa-check-circle" style="color: #8e9499;"></i>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Work 1</th>
+                <td data-toggle="tooltip" data-placement="bottom" 
+                title="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+                ">Make Widget</td>
+                <td >1:00</td>
+                <td >0:25</td>
+                <td>
+                  <i title="Goal Met" class="fa fa-2x fa-check-circle" style="color: #8e9499;"></i>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </form>
+  </div>
     
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

@@ -2,12 +2,12 @@
     --timer-width: 250px;
     --dropdown-width: 200px;
     --header-height: 35px;
-    --timer-container-color: #6c757d;;
-    --timer-container-running-color: #ff3939;
+    --timer-container-color: #6c757d;
+    --timer-container-running-color: #DB4437;
     --timer-bg-color: #ffffff;
     --countdown-bar-bg-color: #dddddd;
     --countdown-fill-width: 0%;
-    --countdown-fill-color: #34ffbb;
+    --countdown-fill-color: #00f17d;
 }
 
 
