@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Categories</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Categories</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  
   <style>
     .form-control {max-width: 400px;}
     .btn-primary {width: auto;}
     .taskTime {width: 90px;}
   </style>
-
-  </head>
+</head>
 <body>
-
 
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="signin.html">No Time like Tomato</a>
@@ -22,11 +22,11 @@
     </button>
     <div class="collapse navbar-collapse pull-right justify-content-end" id="navbarText">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="timer.html">Timer <span class="sr-only">(current)</span></a>
-        </li>
         <li class="nav-item">
-            <a class="nav-link" href="category.html">Category</a>
+          <a class="nav-link" href="timer.html">Timer</a>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link" href="category.html">Category<span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="tasks.html">Tasks</a>
@@ -38,49 +38,105 @@
     </div>
   </nav>
 
-      <div class="container pt-5" style="padding-bottom: 20%; font-size: large;"> 
-        <h1>Categories</h1>
-        <form >
-          <div class="form-row">
-            <div class="form-group col-md-6 p-5">
-              <label for="category" class="pt-5"> Create a new Category</label>
-              <input type="text" class="form-control" id="category" placeholder="Enter a new Category here">
-              <button type="submit" class="btn btn-primary d-block mt-3">Create Category</button>
-              
-            </div>
-            <div class="col-md-4 p-5">
-                <table class="table">
-                    <thead>
-                      <tr>
-                        <th scope="col">Categories</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <th scope="row">Class 1</th>
-                      </tr>
-                      <tr>
-                        <th scope="row">Class 2</th>
-                      </tr>
-                      <tr>
-                        <th scope="row">Class 3</th>
-                      </tr>
-                      <tr>
-                        <th scope="row">Work 1</th>
-                      </tr>
-                    </tbody>
-                  </table>
-            </div>
-          </div>
+  <div class="container pt-5">
+    <h1>Categories</h1>
 
-            
-          </div>
-        </form>
+    <form>
+      <div class="form-row">
+        <div class="form-group col-md-6 p-5">
+          <label for="category" class="pt-5"> Create a new Category</label>
+          <input type="text" class="form-control" id="category" placeholder="Enter a new Category here">
+          <button type="submit" class="btn btn-primary d-block mt-3">Create Category</button>
+        </div>
+        <div class="col-md-4 p-5">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Categories</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Class 1</th>
+              </tr>
+              <tr>
+                <th scope="row">Class 2</th>
+              </tr>
+              <tr>
+                <th scope="row">Class 3</th>
+              </tr>
+              <tr>
+                <th scope="row">Work 1</th>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
-    
+    </form>
+  </div>
+
+  <!-- Graphics: -->
+  <div class="container">
+    <h2>What You've Worked On</h2>
+    <div class="row">
+      <div class="col-md-6 col-sm-12">
+        <div class="card">
+          <div class="card-body">
+            <canvas id="chart1"></canvas>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-sm-12">
+        <div class="card">
+          <div class="card-body">
+            <canvas id="chart2"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-md-12">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Category</th>
+              <th>Goals Met</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Category Name</td>
+              <td>
+                <i title="Goal Met" class="fa fa-2x fa-check-circle" style="color: #0F9D58;"></i>
+                <i title="Goal Met" class="fa fa-2x fa-check-circle" style="color: #0F9D58;"></i>
+              </td>
+            </tr>
+            <tr>
+              <td>Category Name</td>
+              <td>
+                <i title="Goal Met" class="fa fa-2x fa-check-circle" style="color: #0F9D58;"></i>
+                <i title="Goal Met" class="fa fa-2x fa-check-circle" style="color: #0F9D58;"></i>
+                <i title="Goal Met" class="fa fa-2x fa-check-circle" style="color: #0F9D58;"></i>
+                <i title="Goal Met" class="fa fa-2x fa-check-circle" style="color: #0F9D58;"></i>
+              </td>
+            </tr>
+          
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  
+
+
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+
+<script src="../public/categories.js"></script>
 </body>
 </html>

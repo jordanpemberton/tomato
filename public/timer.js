@@ -17,8 +17,6 @@ let breakTime = false;      //variable to keep track of when it is a break inter
 //Variables related to the sessions
 let pomodoroTimer = {workInterval: 0, breakInterval: 0};
 
-// With Default times 25min and 5min:
-// let pomodoroTimer = {workInterval: (25*60), breakInterval: (5*60)};
 
 let timeLeftInSession = pomodoroTimer.workInterval;
 
@@ -26,10 +24,9 @@ let timeSpentInSession = 0;
 let totalTimeInSession = 0;
 
 
-
 // DOM Elements:
-
-// Task time inputs:
+// *** TEMPORARY SET FORM ***
+// Task time inputs:           
 const setTaskHour = document.querySelector('#set-task-hour');
 const setTaskMin = document.querySelector('#set-task-min');
 const setTaskSec = document.querySelector('#set-task-sec');
@@ -44,28 +41,28 @@ const setTimesButton = document.querySelector('#set-times-button');
 // Timer Container:
 const timerContainer = document.querySelector('#timer-container');
 // Task Selection Input Element:
-const taskSelect = document.querySelector('#task-dropdown-select');
+const taskSelect = document.querySelector('#task-dropdown-header');
 // Currently Selected Task:
 const taskSelected = document.querySelector('option.task-dropdown-option[selected=true]')
+
+// Timer fill bar:
+const countdownFill = document.querySelector("#countdown-fill");
+// Timer countdown time:
+const countdownTime = document.querySelector("#countdown-time");
+
 // Start Button:
 const startButton = document.querySelector("#timer-start-pause");
 // Stop Button:
 const stopButton = document.querySelector("#timer-stop");
 // Skip Button:
 const skipButton = document.querySelector("#timer-skip");
+
 // Edit Duration Inputs/Buttons:
-const openEditDurButton = document.querySelector('#open-edit-dur-button');
-const editDurInputs = document.querySelector('#edit-duration-inputs');
-const editDurSubmitButton = document.querySelector("#edit-duration-button");
+const editDurSubmitButton = document.querySelector("#edit-duration-submit");
+const editDurInputs = document.querySelector("#edit-duration-inputs");
 // Reset:
 const resetButton = document.querySelector("#timer-reset");
-// Timer countdown time:
-const countdownTime = document.querySelector("#countdown-time");
-// Timer fill bar:
-const countdownFill = document.querySelector("#countdown-fill");
 
-
-//Assigns the click event listener to the buttons assigned above
 
 // Set times input:
 setTimesButton.addEventListener('click', function() {
@@ -84,6 +81,7 @@ setTimesButton.addEventListener('click', function() {
     displayTimeLeft();
     event.preventDefault();
 })
+
 
 // Start /Pause:
 startButton.addEventListener('click', function(){
@@ -109,15 +107,6 @@ skipButton.addEventListener('click', function(){
 });
 
 
-// Edit Duration button (unhides or hides the set input fields)
-openEditDurButton.addEventListener('click', function(){
-    if (editDurInputs.classList.contains('hidden')) {
-        editDurInputs.classList.remove('hidden');
-    } else {
-        editDurInputs.classList.add('hidden');
-    }
-})
-
 // Edit duration (Set new duration for current timer)
 editDurSubmitButton.addEventListener('click', function(){
     // Update duration:
@@ -128,8 +117,8 @@ editDurSubmitButton.addEventListener('click', function(){
     } else {
         timeLeftInSession = pomodoroTimer.breakInterval;
     }
-    // Hide Input fields:
-    editDurInputs.classList.add('hidden');
+    // Collapse input:
+    editDurInputs.classList.remove('show');
     // Display:
     displayTimeLeft();
     event.preventDefault();
@@ -146,20 +135,16 @@ resetButton.addEventListener('click', resetTimer);
  * startButton innerText = "Start". 
 ****************************************************************************************/
 function toggleTimerVisuals() {
-    // If timer complete: (Some sort of completed visual)
-    // if (timeLeftInSession == 0) {
-    //     timerContainer.classList.add('complete');
-    // } else {
-    //     timerContainer.classList.remove('complete');    
-    // }
     // If timer is running:
     if (isTimerRunning){
-        startButton.innerText = "Pause";
+        // startButton.innerText = "Pause";
+        startButton.innerHTML = '<i title="Pause Timer" class="fa fa-pause"></i>';
         timerContainer.classList.add('running');
     } 
     // If timer is not running:
     else {
-        startButton.innerText = "Start";
+        // startButton.innerText = "Start";
+        startButton.innerHTML = '<i title="Start Timer" class="fa fa-play"></i>';
         timerContainer.classList.remove('running');
     }
 }
@@ -170,7 +155,6 @@ function toggleTimerVisuals() {
  * Description: Restarts the current timer from start.
 ****************************************************************************************/
 function resetTimer() {
-    // ** how to handle time spent / total time with reset? **
     // Display time spent:
     totalTimeInSession = timeSpentInSession;
     displayTotalTimeOnTask();
@@ -387,13 +371,6 @@ function displaySessionType(){
 }
 
 
-/****************************************************************************************
- * Function Name: 
- * Description:
-****************************************************************************************/
-
-
-
 
 /****************************************************************************************
  * Function Name: displayTotalTimeOnTask()
@@ -471,7 +448,6 @@ function editDuration(hour, min, sec) {
     let inputMinToSec = inputMin * 60;
     let totalSec = inputHourToSec + inputMinToSec + inputSec;
 
-    // Check timer classes for task or break status:
     if (isWorking) {
         pomodoroTimer.workInterval = totalSec;
     }
@@ -479,13 +455,6 @@ function editDuration(hour, min, sec) {
         pomodoroTimer.breakInterval = totalSec;
     }
 }
-
-
-
-
-
-
-
 
 
 
