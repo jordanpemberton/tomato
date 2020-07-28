@@ -12,12 +12,12 @@ const login = () => {
         req.addEventListener("load", function() {
             if(req.status >= 200 && req.status < 400){
                 console.log("add success")
-                window.location.assign("/signin")
+                location.href = "file:///C:/Users/Kepe/Downloads/tomato-devin-kepe/tomato-devin-kepe/views/signin.html"
             } else {
                 console.log("Something is big wrong.", req.statusText)
             }});
         req.send(JSON.stringify(payload));
-        event.preventDefault;
+        
     });
 };
 
