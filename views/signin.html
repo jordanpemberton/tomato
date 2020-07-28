@@ -37,7 +37,7 @@
   
     <!-- Start Form Module here -->
     <div class="col-md-4 signIn">
-        <form>
+        <form onsubmit="return false">
             <div class="form-group">
               <label for="exampleInputEmail1">Sign In</label>
               <input type="email" name = "email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
@@ -55,14 +55,14 @@
             </div>
 
             
-            <button type="submit" formaction="/" formmethod = "post" class="btn btn-primary">Sign In</button>
+            <button type="submit" id= "try_login" class="btn btn-primary">Sign In</button>
             <p id="noAccount" class="form-text text-muted" >No account? </p>
             <button type="submit" id="create account" class="btn btn-primary">Create One</button>
           </form>
           </div>
     
     
-<script src="/static/signin.js"></script>
+<script src="../public/signin.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
