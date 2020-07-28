@@ -1,13 +1,14 @@
 var categoriesDisplayed = [];
 
 function addToTable(item){
-                let myTable = document.getElementById("category_table");
-                let row = document.createElement("tr");
-                myTable.appendChild(row);
-                let cell = document.createElement("th");
-                let value = row.appendChild(cell);
-                value.innerText = `${item.category_name}`;
-            }
+    let myTable = document.getElementById("category_table");
+    let row = document.createElement("tr");
+    myTable.appendChild(row);
+    let cell = document.createElement("th");
+    let value = row.appendChild(cell);
+    value.innerText = `${item.category_name}`;
+}
+        
 
 window.addEventListener('load', function(event){
     var req = new XMLHttpRequest();
@@ -37,7 +38,8 @@ const login = () => {
 
         var req = new XMLHttpRequest()
         req.open("POST", "http://localhost:8000/api/categories", true);
-        req.setRequestHeader("Authorization", "Bearer " + window.sessionStorage.getItem('token'),'Content-Type', 'application/json');
+        req.setRequestHeader("Authorization", "Bearer " + window.sessionStorage.getItem('token'));
+        req.setRequestHeader('Content-Type', 'application/json');
         console.log(payload)
         req.addEventListener("load", function() {
             if(req.status >= 200 && req.status < 400){
