@@ -127,3 +127,43 @@ label.set-unit-labels {
     padding: 0;
     margin: 0;
 }
+/* INDIVIDUAL PAGE ELEMENTS */
+/* Light-Dark */
+/* #FFACAA, #D46D6A, #AA3C39, #801815, #550200 */
+.form-control {
+    max-width: 400px;
+}
+
+.btn-primary {
+    width: auto;
+    background-color: #801815!important;
+    border-color: #801815!important;
+}
+.btn-primary:hover {
+    background-color: #550200!important;
+    border-color: #550200!important;
+}
+.btn-primary:focus {
+    box-shadow: 0 0 0 0.2rem rgba(170,60,57,.5)!important;
+}
+.taskTime {
+    width: 90px;
+}
+.signIn {
+    margin: 0 auto;
+}
+#noAccount {
+    margin-top: 30px
+}
+.bg-light {
+    background-color: #ffacaa!important;
+    margin-bottom: 50px;
+}
+.centered {margin: 0 auto;}
+
+.nav-img {height: 50px; margin-right: 15px;}
+
+.form-control:focus {
+    border-color: #D46D6A!important;
+    box-shadow: 0 0 0 0.2rem rgba(212, 109, 106, .25)!important;
+}

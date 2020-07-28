@@ -35,10 +35,21 @@ app.get('/signup', function(req, res){
     res.render('signup.html');
 })
 
+app.get('/category', function(req, res){
+    res.render('category.html');
+})
+
+app.get('/account', function(req, res){
+    res.render('account.html');
+})
+
 app.get('/tasks', function(req, res){
     res.render('tasks.html');
 })
 
+app.get('/editaccount', function(req, res){
+    res.render('editaccount.html');
+})
 app.get('/timer', function(req, res){
     res.render('timer.html');
 })
