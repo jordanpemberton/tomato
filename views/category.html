@@ -41,33 +41,22 @@
   <div class="container pt-5">
     <h1>Categories</h1>
 
-    <form>
+    <form onsubmit="return false">
       <div class="form-row">
         <div class="form-group col-md-6 p-5">
           <label for="category" class="pt-5"> Create a new Category</label>
-          <input type="text" class="form-control" id="category" placeholder="Enter a new Category here">
-          <button type="submit" class="btn btn-primary d-block mt-3">Create Category</button>
+          <input type="text" class="form-control" name="category_name" id="category" placeholder="Enter a new Category here">
+          <button type="submit"  id="create_category" class="btn btn-primary d-block mt-3">Create Category</button>
         </div>
         <div class="col-md-4 p-5">
-          <table class="table">
+          <table class="table" id="category_table">
             <thead>
               <tr>
                 <th scope="col">Categories</th>
               </tr>
             </thead>
+            <!-- This table is filled in via JavaScript -->
             <tbody>
-              <tr>
-                <th scope="row">Class 1</th>
-              </tr>
-              <tr>
-                <th scope="row">Class 2</th>
-              </tr>
-              <tr>
-                <th scope="row">Class 3</th>
-              </tr>
-              <tr>
-                <th scope="row">Work 1</th>
-              </tr>
             </tbody>
           </table>
         </div>
@@ -130,7 +119,7 @@
   
 
 
-
+<script src="../public/category.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
