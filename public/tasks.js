@@ -140,7 +140,7 @@ const makerow = (rowdata) => {
 
 const return_time = (seconds) => {
     var hours = Math.floor(seconds / 3600);
-    var minutes = Math.floor(seconds % 3600 / 60);
+    var minutes = Math.floor((seconds / 60) % 60);
     if (minutes < 10) {
         minutes = "0" + String(minutes)
     }

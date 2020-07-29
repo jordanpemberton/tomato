@@ -397,6 +397,7 @@ function displayTotalTimeOnTask(){
     }
     timeDisplayed += `${leadingZeros(minutes)}:${leadingZeros(seconds)}` //adds the minutes and seconds to timer
     displayTimer.innerText = timeDisplayed.toString();
+    document.getElementById("total_time").value = totalTimeInSession
 }
 
 
