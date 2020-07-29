@@ -1,24 +1,45 @@
-function invalidLogin(){
-    let invalidLog = false;
-    let valid = document.getElementById("exampleInputEmail1").value;
-    console.log(valid)
-    if(valid != 0){
-        invalidLog = false;
-    }
-    else{
-        invalidLog = true;
-    }
-    if(invalidLog){
-        alert("Sorry, that login information doesn't match anything we have. Did you mean to create an account?");
-    }
-    else{}
-    return invalidLog;
+let userToken;
+
+const login = () => {
+
+    document.getElementById("try_login").addEventListener("click", function(event) {
+        var payload = getSignUpData();
+        if (payload.name == "") {
+            return
+        }
+
+        var req = new XMLHttpRequest()
+        req.open("POST", "http://localhost:8000/api/users/login", true);
+        req.setRequestHeader('Content-Type', 'application/json');
+        console.log(payload)
+        req.addEventListener("load", function() {
+            if(req.status >= 200 && req.status < 400){
+                console.log("add success")
+                userToken = JSON.parse(req.responseText).token;
+                window.sessionStorage.setItem('token', userToken);
+                console.log(sessionStorage.getItem('token'));
+                location.href = "file:///C:/School/CS361/tomatoTest2/tomato-devin-kepe/views/tasks.html"
+            } else {
+                console.log("Something is big wrong.", req.statusText)
+            }});
+        req.send(JSON.stringify(payload));
+        
+    });
+};
+
+const getSignUpData = () => {
+    console.log("hello there");
+    var email = document.getElementById("email").value;
+    var username = document.getElementById("username").value;
+    var password = document.getElementById("password").value;
+    
+
+    var newdata = {"username": username, "email": email, "password": password}
+    return newdata;
+
 }
 
 
 
-let sign_up_button = document.getElementById("create account");
-sign_up_button.addEventListener('click', function(event){
-    event.preventDefault();
-    window.location.assign('/signup');
-})
+document.addEventListener("load", login());
+console.log("turtle")
