@@ -69,7 +69,8 @@ const gettaskdata = () => {
 
 }
 const remaketable = () => {
-var req = new XMLHttpRequest()
+    deleterows()
+    var req = new XMLHttpRequest()
     req.open("GET", "http://localhost:8000/api/tasks", true);
     req.setRequestHeader("Authorization", "Bearer " + window.sessionStorage.getItem('token'));
     req.addEventListener("load", function() {
@@ -90,6 +91,7 @@ const makerow = (rowdata) => {
 
 
     rt = document.createElement("tr")
+    rt.className = "data_table_row"
     th = document.createElement("th")
     th.scope = "row" ;
     th_text = document.createTextNode(rowdata.category_name) 
@@ -150,6 +152,18 @@ const return_time = (seconds) => {
     var data = {"hours" : hours, "minutes" : minutes}
 
     return data
+
+}
+
+const deleterows = () => { 
+
+    if (document.querySelectorAll(".data_table_row") != null) {
+        rows = document.querySelectorAll(".data_table_row")
+        for (var row of rows) {
+            row.remove();
+        };
+    }
+    
 
 }
 
