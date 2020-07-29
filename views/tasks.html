@@ -42,18 +42,12 @@
 
   <div class="container" style="padding-bottom: 20%; font-size: large;"> 
     <h1>Tasks</h1>
-    <form >
+    <form onsubmit="return false" >
       <div class="form-row">
         <div class="form-group col-md-6">
           
           <label for="category" class="pt-5"> Select Category</label>
-          <select id="inputState" class="form-control">
-            <option selected>Choose...</option>
-            <option>...</option>
-            <option>Class 1</option>
-            <option>Class 2</option>
-            <option>Class 3</option>
-            <option>Work 1</option>
+          <select id="category_list" class="form-control">
           </select>
         </div>
       </div>
@@ -66,9 +60,9 @@
           <input type="number" min="0" class=" d-inline taskTime" id="task_hours" placeholder="Hours">
           <input type="number" min="0" class=" d-inline taskTime" id="task_minutes" placeholder="Minutes" >
             <label for="taskNotes" class="pt-3 d-block">Task Notes</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            <textarea class="form-control" id="task_description" rows="3"></textarea>
             <label for="submit" class="pt-3"> Now create your task!</label>
-            <button type="submit" class="btn btn-primary d-block">Create Task</button>
+            <button type="submit" id="create_task" class="btn btn-primary d-block">Create Task</button>
         </div>
         
         <div class="col-md-6">
@@ -82,7 +76,7 @@
                 <th scope="col">Goal Met</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody id="table_body">
               <tr>
                 <th scope="row">Homework</th>
                 <td data-toggle="tooltip" data-placement="bottom" 
@@ -105,28 +99,7 @@
                   <i title="Goal Not Yet Met" class="fa fa-2x fa-check-circle" style="color: #8e9499;"></i>
                 </td>
               </tr>
-              <tr>
-                <th scope="row">Class 3</th>
-                <td data-toggle="tooltip" data-placement="bottom" 
-                title="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-                ">Practice Questions</td>
-                <td >3:00</td>
-                <td >0:25</td>
-                <td>
-                  <i title="Goal Not Yet Met" class="fa fa-2x fa-check-circle" style="color: #8e9499;"></i>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">Work 1</th>
-                <td data-toggle="tooltip" data-placement="bottom" 
-                title="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-                ">Make Widget</td>
-                <td >1:00</td>
-                <td >0:25</td>
-                <td>
-                  <i title="Goal Not Yet Met" class="fa fa-2x fa-check-circle" style="color: #8e9499;"></i>
-                </td>
-              </tr>
+              
             </tbody>
           </table>
         </div>
@@ -138,6 +111,7 @@
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="../public/tasks.js"></script>
 <script>
   $(function () {
   $('[data-toggle="tooltip"]').tooltip()
