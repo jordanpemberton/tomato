@@ -8,7 +8,24 @@ function addToTable(item){
     let value = row.appendChild(cell);
     value.innerText = `${item.category_name}`;
 }
-        
+
+function updateCategories(item){
+    let myTable = document.getElementById("goals_met");
+    let row = document.createElement("tr");
+    let cell = document.createElement("td");
+    let cell2 = document.createElement("td");
+    myTable.appendChild(row);
+    let value = row.appendChild(cell);
+    row.appendChild(cell2);
+    value.innerText = `${item.category_name}`;
+    console.log(item.tasks_completed)
+    for(i = 0; i < item.tasks_completed; i++){
+        let check = document.createElement('i');
+        check.className ="fa fa-2x fa-check-circle";
+        check.style.color = "#0F9D58";
+        cell2.append(check);
+    }
+}
 
 window.addEventListener('load', function(event){
     var req = new XMLHttpRequest();
@@ -18,9 +35,9 @@ window.addEventListener('load', function(event){
         if(req.status >= 200 && req.status < 400){
             categoriesDisplayed = JSON.parse(req.responseText);
             categoriesDisplayed.forEach(addToTable);
+            categoriesDisplayed.forEach(updateCategories);
         }
         else{
-            console.log('general kenobi');
         }
     });
     req.send(null);
