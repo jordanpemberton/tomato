@@ -18,7 +18,7 @@ const login = () => {
                 userToken = JSON.parse(req.responseText).token;
                 window.sessionStorage.setItem('token', userToken);
                 console.log(sessionStorage.getItem('token'));
-                location.href = "/view_tasks";
+                location.href = "/view_categories";
             } else {
                 console.log("Something is big wrong.", req.statusText)
             }});
