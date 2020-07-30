@@ -29,6 +29,37 @@ app.use(bodyParser.json());
  * API routes live under api/ directory
  */
 app.use('/api', api);
+app.set('views', 'views');
+app.use('/static', express.static('public'));
+app.engine('html', require('ejs').renderFile);
+
+app.get('/', function(req,res){
+  res.render('signup.html');
+})
+
+app.get('/signin', function(req, res){
+  res.render('signin.html');
+})
+
+app.get('/view_tasks', function(req,res){
+  res.render('tasks.html');
+})
+
+app.get('/view_categories', function(req,res){
+  res.render('category.html');
+})
+
+app.get('/view_account', function(req,res){
+  res.render('account.html');
+})
+
+app.get('/timer_page', function(req,res){
+  res.render('timer.html');
+})
+
+app.get('/edit_account', function(req,res){
+  res.render('editaccount.html');
+})
 
 /*
  * TomatoError handling route
