@@ -34,11 +34,11 @@ app.use('/static', express.static('public'));
 app.engine('html', require('ejs').renderFile);
 
 app.get('/', function(req,res){
-  res.render('signup.html');
+  res.render('signin.html');
 })
 
-app.get('/signin', function(req, res){
-  res.render('signin.html');
+app.get('/signup', function(req, res){
+  res.render('signup.html');
 })
 
 app.get('/view_tasks', function(req,res){
