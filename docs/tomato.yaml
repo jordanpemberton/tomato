@@ -1,0 +1,758 @@
+openapi: 3.0.2
+info:
+  version: 1.0.0
+  title: Pomedero ala Tomato
+  description: Tomato implementation of Pomedero
+
+paths:
+  /api/user:
+    post:
+      summary: Create a new User.
+      description: >
+        Create a new User
+      operationId: createUser
+      tags:
+        - Users
+      requestBody:
+        required: true
+        description: A User object.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '201':
+          description: New user added
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    oneOf:
+                      - type: integer
+                    description: >
+                      Unique ID of the new User.
+                    example: "416"
+        '400':
+          description: >
+            The request is invalid.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: >
+            An internal server error occurred.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/user/{id}:
+    parameters:
+      - name: id
+        in: path
+        description: >
+          Unique ID of a User.
+        schema:
+          oneOf:
+            - type: integer
+            - type: string
+        example: "416"
+        required: true
+    get:
+      summary: Fetch details about a User.
+      description: >
+        Returns information about the specified User.
+      operationId: getUserById
+      tags:
+        - Users
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '403':
+          description: >
+            The request was not authenticated or does not match authenticated user.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description:  User `id` not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: >
+            An internal server error occurred.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    patch:
+      summary: Update a User.
+      description: >
+        Update a User
+      operationId: updateUser
+      tags:
+        - Users
+      requestBody:
+        required: true
+        description: A User object.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '201':
+          description: User updated
+        '400':
+          description: >
+            The request is invalid.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: >
+            Endpoint requires authentication
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: >
+            An internal server error occurred.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      summary: Delete a User account (NOT IMPLEMENTED!)
+      description: >
+        Deletes a User as well as all Categories and Tasks for that user.
+      operationId: deleteUser
+      tags:
+        - Users
+      responses:
+        '200':
+          description: Success
+        '403':
+          description: >
+            The request was not authenticated or does not match authenticated user.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description:  User `id` not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: >
+            An internal server error occurred.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/user/{id}/reset/:
+    parameters:
+      - name: id
+        in: path
+        description: >
+          Unique ID of a User.
+        schema:
+          oneOf:
+            - type: integer
+            - type: string
+        example: "416"
+        required: true
+    delete:
+      summary: Reset account information
+      description: >
+        Deletes all Categories and Tasks for a user.
+      operationId: resetUser
+      tags:
+        - Users
+      responses:
+        '200':
+          description: Success
+        '403':
+          description: >
+            The request was not authenticated or does not match authenticated user.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description:  User `id` not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: >
+            An internal server error occurred.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/user/login:
+    post:
+      summary: Attempt to log in a User.
+      description: >
+        Authenticate a user using their username and password pair.
+      operationId: authenticateUser
+      tags:
+        - Users
+      requestBody:
+        required: true
+        description: >
+          Username and plain-text password for the User being authenticated.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+            example:
+              username: executor
+              password: hugand2kisses
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+                    description: >
+                      JWT authentication token.
+                    example: aaaaaaaa.bbbbbbbb.cccccccc
+        '400':
+          description: >
+            The request body was invalid.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: >
+            Provided credentials were invalid.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: >
+            An internal server error occurred. occurred.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /api/category:
+    get:
+      summary: Fetch the list of all Categories for this User.
+      description: >
+        Returns the list of all Categories for a user.
+      operationId: getAllCategoriesForUser
+      tags:
+        - Categories
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  submissions:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Category'
+    post:
+      summary: Create a new Category.
+      description: >
+        Create a new Category for a user
+      operationId: createCategory
+      tags:
+        - Categories
+      requestBody:
+        required: true
+        description: A Category object.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Category'
+      responses:
+        '201':
+          description: New Category added
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    oneOf:
+                      - type: integer
+                    description: >
+                      Unique ID of the new Category.
+                    example: "211"
+        '400':
+          description: >
+            The request is invalid.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: >
+            Endpoint requires authentication
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: >
+            An internal server error occurred. occurred.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/category/{id}:
+    parameters:
+      - name: id
+        in: path
+        description: >
+          Unique ID of a Category.
+        schema:
+          oneOf:
+            - type: integer
+            - type: string
+        example: "2200"
+        required: true
+    patch:
+      summary: Update a Catagory.
+      description: >
+        Update a Category
+      operationId: updateCategory
+      tags:
+        - Categories
+      requestBody:
+        required: true
+        description: A Category object.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Category'
+      responses:
+        '201':
+          description: Category updated
+        '400':
+          description: >
+            The request is invalid.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: >
+            Endpoint requires authentication
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: >
+            An internal server error occurred. occurred.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      summary: Delete a Category
+      description: >
+        Deletes a Category and all Tasks in that Category for a User.
+      operationId: deleteCategory
+      tags:
+        - Categories
+      responses:
+        '200':
+          description: Success
+        '403':
+          description: >
+            The request was not authenticated or does not match authenticated user.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Category `id` not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: >
+            An internal server error occurred. occurred.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /api/tasks:
+    get:
+      summary: Fetch the list of all Tasks for this User.
+      description: >
+        Returns the list of all Tasks for this User.
+      operationId: getAllTasksForUser
+      tags:
+        - Tasks
+      parameters:
+        - name: completed
+          in: query
+          description: >
+            Fetch Tasks based on the completed status
+          schema:
+            type: boolean
+            example: true
+            default: false
+        - name: category
+          in: query
+          description: >
+            Fetch only Tasks with the specified Category ID.
+          schema:
+            type: integer
+            example: 16
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  submissions:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/TaskList'
+    post:
+      summary: Create a new Task.
+      description: >
+        Create a new Task for a User
+      operationId: createTask
+      tags:
+        - Tasks
+      requestBody:
+        required: true
+        description: A Task object.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Task'
+      responses:
+        '201':
+          description: New task added
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    oneOf:
+                      - type: integer
+                    description: >
+                      Unique ID of the new Task.
+                    example: "2344"
+        '400':
+          description: >
+            The request is invalid.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: >
+            Endpoint requires authentication
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: >
+            An internal server error occurred. occurred.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/tasks/{id}:
+    parameters:
+      - name: id
+        in: path
+        description: >
+          Unique ID of a Category.
+        schema:
+          oneOf:
+            - type: integer
+            - type: string
+        example: "2200"
+        required: true
+
+    get:
+      summary: Fetch the details of a Task
+      description: >
+        Returns the details of a Task for a User.
+      operationId: getTasksById
+      tags:
+        - Tasks
+      parameters:
+        - name: id
+          in: query
+          description: >
+            Task ID to load.
+          schema:
+            type: integer
+            example: 16
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  submissions:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Task'
+        '403':
+          description: >
+            Endpoint requires authentication
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Task `id` not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: >
+            An internal server error occurred. occurred.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+    patch:
+      summary: Update a Task.
+      description: >
+        Update Task details.
+      operationId: updateTask
+      tags:
+        - Tasks
+      requestBody:
+        required: true
+        description: A Task object.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Task'
+      responses:
+        '201':
+          description: Task updated.
+        '400':
+          description: >
+            The request is invalid.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: >
+            Endpoint requires authentication.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      summary: Delete a Task
+      description: >
+        Delete a Task for a User.
+      operationId: deleteTask
+      tags:
+        - Tasks
+      responses:
+        '200':
+          description: Success.
+        '403':
+          description: >
+            The request was not authenticated or does not match authenticated user.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description:  Task `id` not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: >
+            An internal server error occurred. occurred.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+
+components:
+  schemas:
+    User:
+      description: >
+        An object representing the user account.
+      type: object
+      properties:
+        user_id:
+          type: integer
+          description: Unique ID for each user.
+          example: 416
+        username:
+          type: string
+          description: Account username, must be unique
+          example: executor
+        email:
+          type: string
+          description: >
+            Email address for the user account, must be unique.
+          example: doejan7@oregonstate.edu
+        password:
+          type: string
+          description: >
+            Password for the user account, stored as an md5 hash.
+          example: 81fff1a2929eb451eb8ae58f1e758991
+    Category:
+      description: >
+        An object representing a Category.
+      type: object
+      properties:
+        category_id:
+          type: integer
+          description: Unique ID for this Category.
+          example: 22
+        user_id:
+          type: integer
+          description: ID of User who created the Category.
+          example: 416
+        category_name:
+          type: string
+          description: Name of the Category.
+          example: Homework
+        tasks_completed:
+          type: integer
+          description: The number of Tasks completed in this Category.
+          example: 15
+        rank:
+          type: integer
+          description: Current rank in this Category.
+          example: 6
+        next_rank_in:
+          type: number
+          format: float
+          description: The percent of time to go until the next rank.
+          example: 0.74
+    Task:
+      description: >
+        An object representing a Task.
+      type: object
+      properties:
+        task_id:
+          type: integer
+          description: Unique ID for the Task.
+          example: 22440
+        user_id:
+          type: integer
+          description: User associated with this task.
+          example: 416
+        category_id:
+          type: integer
+          description: Category associated with this task.
+          example: 23
+        task_name:
+          type: string
+          description: Name of the Task
+          example: Do Homework
+        description:
+          type: string
+          description: >
+            Extra long description associated with the task
+          example: >
+            CS361 Week 3 Quiz.
+        completed:
+          type: boolean
+          description: >
+            Has this task been completed?
+          example: true
+        time_duration:
+          type: integer
+          description: >
+            Total duration allocated for this task, in seconds.
+          example: 1800
+        time_completed:
+          type: integer
+          description: >
+            Duration that has been worked on this task
+          example: 910
+    TaskList:
+      description: >
+        An object representing a list of Tasks.
+      type: object
+      properties:
+        task_id:
+          type: integer
+          description: Unique ID for the Task.
+          example: 22440
+        category_id:
+          type: integer
+          description: Category associated with this task.
+          example: 23
+        task_name:
+          type: string
+          description: Name of the Task.
+          example: Do Homework
+        completed:
+          type: boolean
+          description: >
+            Has this task been completed?
+          example: true
+
+    Error:
+      description: >
+        An object representing an error response from the API.
+      type: object
+      properties:
+        error:
+          type: string
+          description: A message describing the Error.
+
+tags:
+  - name: Users
+    description: >
+      API endpoints related to application Users.
+  - name: Tasks
+    description: >
+      API endpoints related to Tasks.
+  - name: Categories
+    description: >
+      API endpoints related to Categories.
