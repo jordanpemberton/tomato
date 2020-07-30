@@ -12,7 +12,7 @@ const login = () => {
         req.addEventListener("load", function() {
             if(req.status >= 200 && req.status < 400){
                 console.log("add success")
-                location.href = "/signin";
+                location.href = "/";
             } else {
                 console.log("Something is big wrong.", req.statusText)
             }});
