@@ -61,7 +61,7 @@ const login = () => {
         req.addEventListener("load", function() {
             if(req.status >= 200 && req.status < 400){
                 console.log("add success")
-                location.href = "file:///C:/School/CS361/tomatoTest2/tomato-devin-kepe/views/category.html"
+                location.href = "/view_categories"
             } else {
                 console.log("Something is big wrong.", req.statusText)
             }});

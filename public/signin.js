@@ -18,7 +18,7 @@ const login = () => {
                 userToken = JSON.parse(req.responseText).token;
                 window.sessionStorage.setItem('token', userToken);
                 console.log(sessionStorage.getItem('token'));
-                location.href = "file:///C:/School/CS361/tomatoTest2/tomato-devin-kepe/views/tasks.html"
+                location.href = "/view_tasks";
             } else {
                 console.log("Something is big wrong.", req.statusText)
             }});

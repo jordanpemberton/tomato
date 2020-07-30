@@ -12,7 +12,7 @@ const login = () => {
         req.addEventListener("load", function() {
             if(req.status >= 200 && req.status < 400){
                 console.log("add success")
-                location.href = "file:///C:/Users/Kepe/Downloads/tomato-devin-kepe/tomato-devin-kepe/views/signin.html"
+                location.href = "/signin";
             } else {
                 console.log("Something is big wrong.", req.statusText)
             }});
