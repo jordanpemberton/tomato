@@ -113,7 +113,7 @@ router.get('/:id', requireAuth, (req, res, next) => {
 
     console.log(" == getTaskDetails: ", req.params.id);
 
-    let sql = 'SELECT * FROM tasks WHERE task_id = ? AND user_id = ?';
+    let sql = 'SELECT * FROM tasks INNER JOIN categories ON tasks.category_id = categories.category_id WHERE task_id = ? AND tasks.user_id = ?';
 
     db.query(sql, [req.params.id, user_id], function(err, results) {
       if (err) {
