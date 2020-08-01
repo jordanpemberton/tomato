@@ -24,11 +24,11 @@ window.addEventListener("load", function(event) {
 })
 
 //following variables are used for updating goal completion in the categories tabls
-var selectedTaskCompleted;
-var selectedTaskIsCompleted;
-var taskCategoryID;
-var selectedTaskGoalTime;
-var selectedTaskTimeCompleted;
+var selectedTaskCompleted;          //integer variable for number of tasks completed in that category
+var selectedTaskIsCompleted;        //has the task been completed
+var taskCategoryID;                 //ID of category associated with selected task
+var selectedTaskGoalTime;           //Goal time of the selected task
+var selectedTaskTimeCompleted;      //The time spent working on the selected task
 document.getElementById("task-dropdown-header").addEventListener("change", function(event) {
     var req = new XMLHttpRequest()
     var id = document.getElementById("task-dropdown-header").value
@@ -37,7 +37,8 @@ document.getElementById("task-dropdown-header").addEventListener("change", funct
     req.addEventListener("load", function() {
         if(req.status >= 200 && req.status < 400){
             taskdata = JSON.parse(req.responseText);
-            selectedTaskCompleted = taskdata.tasks_completed;
+            //following set data to the taskdata variable
+            selectedTaskCompleted = taskdata.tasks_completed;       
             selectedTaskIsCompleted = taskdata.completed;
             taskCategoryID = taskdata.category_id;
             selectedTaskGoalTime = taskdata.time_duration;
@@ -50,7 +51,9 @@ document.getElementById("task-dropdown-header").addEventListener("change", funct
     req.send(null)
 })
 
-
+/**
+ * This PATCH request updates the time spent working on the task using the time spent in session
+ */
 
 document.getElementById("timer-stop").addEventListener("click", function(event) {
     var req = new XMLHttpRequest()
@@ -70,7 +73,10 @@ document.getElementById("timer-stop").addEventListener("click", function(event) 
     req.send(JSON.stringify(newdata))
 })
 
-//following is a patch route to modify categories based on task completion
+/**
+ * THis PATCH request updates a task being completed if the goal time was met and the selected task hasn't 
+ * been completed before
+ */
 document.getElementById("timer-stop").addEventListener("click", function(event){
     var req = new XMLHttpRequest()
     var id = taskCategoryID; 
@@ -91,7 +97,10 @@ document.getElementById("timer-stop").addEventListener("click", function(event){
     }
 })
 
-//PATCH for updating a task being completed
+/**
+ * PATCH request for updating the task being complete if the session time + time spent already is greater
+ * than the goal time for the task
+ */
 document.getElementById("timer-stop").addEventListener("click", function(event) {
     var req = new XMLHttpRequest()
     var id = document.getElementById("task-dropdown-header").value;
