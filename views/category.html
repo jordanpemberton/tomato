@@ -34,8 +34,8 @@
         <li class="nav-item">
           <a class="nav-link" href="/timer_page">Timer</a>
         </li>
-        <li class="nav-item active">
-            <a class="nav-link" href="/view_categories">Category<span class="sr-only">(current)</span></a>
+        <li class="nav-item">
+            <a class="nav-link" href="/view_categories">Category<span class="sr-only"></span></a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="/view_tasks">Tasks</a>
@@ -124,6 +124,12 @@
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 <script src="/static/category.js"></script>
-
+<script>
+  $(document).ready(function() {
+      // get current URL path and assign 'active' class
+      var pathname = window.location.pathname;
+      $('.navbar-nav > li > a[href="'+pathname+'"]').parent().addClass('active');
+  })
+</script>
 </body>
 </html>
