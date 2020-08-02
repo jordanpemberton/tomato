@@ -167,3 +167,4 @@ label.set-unit-labels {
     border-color: #D46D6A!important;
     box-shadow: 0 0 0 0.2rem rgba(212, 109, 106, .25)!important;
 }
+.tiny-form {display: inline; max-width: 65px;}

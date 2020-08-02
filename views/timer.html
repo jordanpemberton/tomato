@@ -18,7 +18,7 @@
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
-        <a class="navbar-brand" href="/"><img class="nav-img" src="/static/tomato.png" alt="Tomato"/>No Time like Tomato</a>
+        <div class="navbar-brand" href="/"><img class="nav-img" src="/static/tomato.png" alt="Tomato"/>No Time like Tomato</div>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -29,8 +29,8 @@
 
               <a class="nav-link" href="/timer_page">Timer</a>
             </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="/view_categories">Category<span class="sr-only">(current)</span></a>
+            <li class="nav-item">
+                <a class="nav-link" href="/view_categories">Category<span class="sr-only"></span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/view_tasks">Tasks</a>
@@ -50,10 +50,10 @@
     <div class="container" style="text-align: center;">
         <!-- Simple Timers Form -->
         <h2>Set Timer:</h2>
-        <div id="set-task-time">
+        <div id="set-task-time" class="form-group">
             <p>Task Time:</p>
             <!-- Hour -->
-            <select id="set-task-hour">
+            <select id="set-task-hour" class="form-control tiny-form">
                 <option value="0">0</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -79,9 +79,9 @@
                 <option value="22">22</option>
                 <option value="23">23</option>
             </select>
-            <label for="set-task-hour" class="set-unit-labels">h</label>
+            <label for="set-task-hour" class="set-unit-labels ">h</label>
             <!-- Minute -->
-            <select id="set-task-min">
+            <select id="set-task-min" class="form-control tiny-form">
                 <option value="0">0</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -143,9 +143,9 @@
                 <option value="58">58</option>
                 <option value="59">59</option>
             </select>
-            <label for="set-task-min" class="set-unit-labels">m</label>
+            <label for="set-task-min" class="set-unit-labels ">m</label>
             <!-- Second -->
-            <select id="set-task-sec">
+            <select id="set-task-sec" class="form-control tiny-form">
                 <option value="0">0</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -210,11 +210,11 @@
             <label for="set-task-sec" class="set-unit-labels">s</label>
         </div>
 
-        <div id="set-break-time">
+        <div id="set-break-time" class="form-group">
             <p>Break Time:</p>
             <!-- As multiple select inputs in hour, min, sec -->
             <!-- Hour -->
-            <select id="set-break-hour">
+            <select id="set-break-hour" class="form-control tiny-form">
                 <option value="0">0</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -242,7 +242,7 @@
             </select>
             <label for="set-break-hour" class="set-unit-labels">h</label>
             <!-- Minute -->
-            <select id="set-break-min">
+            <select id="set-break-min" class="form-control tiny-form">
                 <option value="0">0</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -306,7 +306,7 @@
             </select>
             <label for="set-break-min" class="set-unit-labels">m</label>
             <!-- Second -->
-            <select id="set-break-sec">
+            <select id="set-break-sec" class="form-control tiny-form">
                 <option value="0">0</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -602,11 +602,11 @@
             <button id="edit-duration-submit" class="timer-button set-button btn btn-sm btn-primary" type="button">Set Duration</button>
 
         </div>
-
     </div>
-
+    
+<div class="container">
     <br>
-    <h6>Time Spent on Task:</h2>
+    <h6>Time Spent on Task:</h6>
     <p id="total task"></p>
     <input id="total_time" hidden type="number">
 
@@ -617,5 +617,12 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <script src= "/static/timer_requests.js"></script>
+<script>
+    $(document).ready(function() {
+        // get current URL path and assign 'active' class
+        var pathname = window.location.pathname;
+        $('.navbar-nav > li > a[href="'+pathname+'"]').parent().addClass('active');
+    })
+</script>
 </body>
 </html>

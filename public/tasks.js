@@ -113,7 +113,7 @@ const makerow = (rowdata) => {
     icon_td = document.createElement("td")
     icon = document.createElement("i")
     icon.className = "fa fa-2x fa-check-circle";
-    if (time_td.value >= goal_td.value) {
+    if (time_done.total_seconds >= time_goal.total_seconds) {
         icon.title = "Goal Met";
         icon.style.color = "#0F9D58";
     }
@@ -149,7 +149,7 @@ const return_time = (seconds) => {
     else {
         minutes = String(minutes)
     }
-    var data = {"hours" : hours, "minutes" : minutes}
+    var data = {"hours" : hours, "minutes" : minutes, "total_seconds" : seconds}
 
     return data
 
