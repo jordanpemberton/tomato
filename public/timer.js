@@ -59,10 +59,6 @@ const stopButton = document.querySelector("#timer-stop");
 // Skip Button:
 const skipButton = document.querySelector("#timer-skip");
 
-// Edit Duration Inputs/Buttons:
-// const editDurSubmitButton = document.querySelector("#edit-duration-submit");
-// const editDurInputs = document.querySelector("#edit-duration-inputs");
-
 // Reset:
 const resetButton = document.querySelector("#timer-reset");
 
@@ -115,24 +111,6 @@ skipButton.addEventListener('click', function(){
     toggleTimerVisuals();
 });
 
-
-// Edit duration (Set new duration for current timer)
-// editDurSubmitButton.addEventListener('click', function(){
-//     // Update duration:
-//     editDuration();
-//     // Update timeLeftInSession for correct timer session type:
-//     if (isWorking) {
-//         timeLeftInSession = pomodoroTimer.workInterval;
-//     } else {
-//         timeLeftInSession = pomodoroTimer.breakInterval;
-//     }
-//     // Collapse input:
-//     editDurInputs.classList.remove('show');
-//     // Display:
-//     displayTimeLeft();
-//     event.preventDefault();
-// });
-
 // Reset:
 resetButton.addEventListener('click', resetTimer);
 
@@ -184,7 +162,6 @@ function resetTimer() {
     toggleTimerVisuals();
     displayTimeLeft();    
 }
-
 
 
 /****************************************************************************************
@@ -278,7 +255,6 @@ function displayTimeLeft(){
     countdownTime.innerText = timeDisplayed.toString();
     // Fill bar:
     displayFillBar();
-
 }
 
 
@@ -379,7 +355,6 @@ function displaySessionType(){
 }
 
 
-
 /****************************************************************************************
  * Function Name: displayTotalTimeOnTask()
  * Description:
@@ -407,7 +382,6 @@ function displayTotalTimeOnTask(){
     displayTimer.innerText = timeDisplayed.toString();
     document.getElementById("total_time").value = totalTimeInSession
 }
-
 
 
 /****************************************************************************************
@@ -441,29 +415,6 @@ function setDurations(){
         pomodoroTimer.breakInterval = totalBreakSec;
     }
 }
-
-
-/****************************************************************************************
- * Function Name: editDuration()
- * Description: This function gets provided updated time input, converts to seconds, and applies
- * to workInterval or breakInterval, depending on which timer type is currently in use.
-****************************************************************************************/
-// function editDuration(hour, min, sec) {
-//     let inputHour = parseInt(document.querySelector("#edit-hour").value);
-//     let inputMin = parseInt(document.querySelector("#edit-min").value);
-//     let inputSec = parseInt(document.querySelector("#edit-sec").value);
-
-//     let inputHourToSec = inputHour * 60 * 60;
-//     let inputMinToSec = inputMin * 60;
-//     let totalSec = inputHourToSec + inputMinToSec + inputSec;
-
-//     if (isWorking) {
-//         pomodoroTimer.workInterval = totalSec;
-//     }
-//     else {
-//         pomodoroTimer.breakInterval = totalSec;
-//     }
-// }
 
 
 

@@ -98,25 +98,8 @@ div.hidden > * {
     margin: 0 0 10px;
 }
 
-/* EDIT DURATION INPUTS */
-div.edit-dur-row,
-div.edit-dur-row > .col {
-    padding: 0;
-    margin: 0;
-    min-height: 10px;
-}
-
-div.edit-dur-row > .col > .form-group {
-    margin: 4px;
-}
 
 
-label.set-unit-labels {
-    font-size: 10pt;
-    font-weight: bold;
-    padding: 0;
-    margin: 0;
-}
 /* INDIVIDUAL PAGE ELEMENTS */
 /* Light-Dark */
 /* #FFACAA, #D46D6A, #AA3C39, #801815, #550200 */
