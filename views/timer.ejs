@@ -1,64 +1,90 @@
 <%- include("partials/header") %>
-<div class="container" style="text-align: center;">
-    <!-- Simple Timers Form -->
-    <h2>Set Timer:</h2>
-    <div id="set-task-time" class="form-group">
-        <p>Task Time:</p>
-        <!-- Hour -->
-        <select id="set-task-hour" class="form-control tiny-form">
-            <% for(i = 0; i < 24; i++){ %>
-                <option value="<%=i%>"><%=i%></option>
-            <% } %>
-            
-        </select>
-        <label for="set-task-hour" class="set-unit-labels ">h</label>
-        <!-- Minute -->
-        <select id="set-task-min" class="form-control tiny-form">
-            <% for(i = 0; i < 60; i++) { %>
-            <option value="<%=i%>"><%=i%></option>
-            <% } %>
-            
-        </select>
-        <label for="set-task-min" class="set-unit-labels ">m</label>
-        <!-- Second -->
-        <select id="set-task-sec" class="form-control tiny-form">
-            <% for(i = 0; i < 60; i++) { %>
-                <option value="<%=i%>"><%=i%></option>
-            <% } %>
-            
-        </select>
-        <label for="set-task-sec" class="set-unit-labels">s</label>
-    </div>
+<div class="container card pt-3 px-3">
+    <form>
+        <div class="row form-group">
+            <div class="col col-md-4">
+                <h4 class="">Select A Task</h4>
+            </div>
+            <div class="col">
+                <select id="task-dropdown-header" class="form-control form-control-sm"></select>
+            </div>
+        </div>
 
-    <div id="set-break-time" class="form-group">
-        <p>Break Time:</p>
-        <!-- As multiple select inputs in hour, min, sec -->
-        <!-- Hour -->
-        <select id="set-break-hour" class="form-control tiny-form">
-            <% for(i = 0; i < 24; i++){ %>
-                <option value="<%=i%>"><%=i%></option>
-            <% } %>
-        </select>
-        <label for="set-break-hour" class="set-unit-labels">h</label>
-        <!-- Minute -->
-        <select id="set-break-min" class="form-control tiny-form">
-            <% for(i = 0; i < 60; i++) { %>
-                <option value="<%=i%>"><%=i%></option>
-            <% } %>
-        </select>
-        <label for="set-break-min" class="set-unit-labels">m</label>
-        <!-- Second -->
-        <select id="set-break-sec" class="form-control tiny-form">
-            <% for(i = 0; i < 60; i++) { %>
-                <option value="<%=i%>"><%=i%></option>
-            <% } %>
-        </select>
-        <label for="set-break-sec" class="set-unit-labels">s</label>
-    </div>
+        <div class="row form-group form-inline">
+            <div class="col col-md-4">
+                <h4 class="">Work For...</h4>
+            </div>
+            <div class="col">
+                <!-- Hour -->
+                <select id="set-task-hour" class="form-control form-control-sm">
+                    
+                    <% for(i = 0; i < 24; i++){ %>
+                        <option value="<%=i%>"><%=i%></option>
+                    <% } %>
 
-    <div id="set-times">
-        <button id="set-times-button" class="btn btn-primary">Set</button>
-    </div>
+                </select>
+                <small class="text-muted text-center">hour</small>
+            </div>
+            <div class="col">
+                <!-- Minute -->
+                <select id="set-task-min" class="form-control form-control-sm">
+                    <% for(i = 0; i < 60; i++) { %>
+                        <option value="<%=i%>"><%=i%></option>
+                        <% } %>
+            
+                </select>
+                <small class="text-muted text-center">min</small>
+            </div>
+
+            <div class="col">
+                <!-- Second -->
+                <select id="set-task-sec" class="form-control form-control-sm">
+                    <% for(i = 0; i < 60; i++) { %>
+                        <option value="<%=i%>"><%=i%></option>
+                        <% } %>
+            
+                </select>
+                <small class="text-muted text-center">sec</small>
+            </div>
+        </div>
+
+        <div class="row form-group form-inline">
+            <div class="col col-md-4">
+                <h4 class="">Break For...</h4>
+            </div>
+            <div class="col">
+                <select id="set-break-hour" class="form-control form-control-sm">
+                    <% for(i = 0; i < 24; i++){ %>
+                        <option value="<%=i%>"><%=i%></option>
+                    <% } %>
+                </select>
+                <small class="text-muted">hour</small>
+            </div>
+            <div class="col">
+                <select id="set-break-min" class="form-control form-control-sm">
+                    <% for(i = 0; i < 60; i++) { %>
+                        <option value="<%=i%>"><%=i%></option>
+                        <% } %>
+
+                </select>
+                <small class="text-muted">min</small>
+            </div>
+            <div class="col">
+                <select id="set-break-sec" class="form-control form-control-sm">
+                    <% for(i = 0; i < 60; i++) { %>
+                        <option value="<%=i%>"><%=i%></option>
+                        <% } %>
+                </select>
+                <small class="text-muted">sec</small>
+            </div>
+        </div>
+
+        <div class="row form-group">
+            <div class="col col-md-12 text-center">
+                <button id="set-times-button" class="btn btn-primary">Set Timer</button>
+            </div>
+        </div>
+    </form>
 </div>
 
 <br>
@@ -66,12 +92,10 @@
 <!-- Timer -->
 <div id="timer-container" class="container timer-container task-timer">
 
-    <!-- TIMER HEADER -->
-    <!-- The timer-container's class will determine which header items to show/hide -->
-    <!-- TASK HEADER as Select input -->
-    <select id="task-dropdown-header" class="selectpicker timer-header task-dropdown-header">
-        <option class="task-dropdown-option" value="" disabled selected hidden>Select Your Task</option>
-    </select>
+    <!-- TASK HEADER -->
+    <div id="task-timer-title-container" class="timer-header task-header">
+        <div id="task-timer-title"></div>
+    </div>
 
     <!-- BREAK HEADER -->
     <div id="break-timer-title-container" class="timer-header break-header">
@@ -86,81 +110,35 @@
 
 
     <!-- BUTTONS -->
-    <div id="timer-buttons-group" class="btn-group timer-button" role="group">
-        <!-- Edit Duration (Toggles input fields) -->
-        <button id="edit-duration-toggle" title="Change Timer Duration" class="btn btn-secondary" type="button" data-toggle="collapse" data-target="#edit-duration-inputs" aria-expanded="false" aria-controls="collapseExample">
-            <i class="fa fa-pencil"></i>
-        </button>
-
-        <!-- Reset (Restart the timer) -->
-        <button id="timer-reset" title="Restart Timer" class="btn btn-secondary" type="button"><i class="fa fa-repeat"></i></button>
-
+    <div id="timer-buttons-group" class="timer-button" role="">
+        <!-- Reset -->
+        <button id="timer-reset" title="Reset Timer" class="btn btn-secondary" type="button"><i class="fa fa-repeat"></i></button>
         <!-- Start/Pause (toggles with JS) -->
         <button id="timer-start-pause" title="Start Timer" class="btn btn-secondary type="button"><i class="fa fa-play"></i></button>
-
         <!-- Stop  -->
         <button id="timer-stop" title="Stop Timer" class="btn btn-secondary type="button"><i class="fa fa-stop"></i></button>
-
         <!-- Skip -->
         <button id="timer-skip" title="Skip" class="btn btn-secondary" type="button"><i class="fa fa-forward"></i></button>
     </div>
 
-
-    <!-- EDIT DURATION INPUTS -->
-
-    <div id="edit-duration-inputs" class="collapse container">
-
-        <div class="edit-dur-row row">
-            <div class="col">
-                <div class="form-group">
-                    <!-- Hour -->
-                    <select id="edit-hour" class="selectpicker form-control">
-                        <% for(i = 0; i < 24; i++){ %>
-                            <option value="<%=i%>"><%=i%></option>
-                        <% } %>
-                    </select>
-                    <label for="edit-hour" class="set-unit-labels text-muted">hour</label>
-                </div>
-            </div>
-
-            <div class="col">
-                <div class="form-group">
-                    <!-- Minute -->
-                    <select id="edit-min" class="selectpicker form-control">
-                        <% for(i = 0; i < 60; i++) { %>
-                            <option value="<%=i%>"><%=i%></option>
-                        <% } %>
-                    </select>
-                    <label for="edit-min" class="set-unit-labels text-muted">min</label>
-                </div>
-            </div>
-
-            <div class="col">
-                <div class="form-group">
-                    <!-- Second -->
-                    <select id="edit-sec" class="selectpicker form-control">
-                        <% for(i = 0; i < 60; i++) { %>
-                            <option value="<%=i%>"><%=i%></option>
-                        <% } %>
-                    </select>
-                    <label for="edit-sec" class="set-unit-labels text-muted">sec</label>
-                </div>
-            </div>
-        </div>
-
-        <!-- Submit -->
-        <button id="edit-duration-submit" class="timer-button set-button btn btn-sm btn-primary" type="button">Set Duration</button>
-
-    </div>
 </div>
 
-<div class="container">
-<br>
-<h6>Time Spent on Task:</h6>
-<p id="total task"></p>
-<input id="total_time" hidden type="number">
-
+<br><br>
+<div class="container text-center">
+    <h4>Time Spent on Task:</h4>
+    <h4 id="total task"></h4>
+    <input id="total_time" hidden type="number" class="">
 </div>
+
+<br><br><br>
+
+
+
+
+
+
+
+
 <script src="/timer.js"></script>
 <script src="/timer_requests.js"></script>
 <%- include("partials/footer") %>
