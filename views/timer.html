@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="/static/timer_styles.css">
   <link rel="icon" type="image/png" href="/static/favicon-32x32.png" sizes="32x32" />
   <link rel="icon" type="image/png" href="/static/favicon-16x16.png" sizes="16x16" />
-  
+
 
 </head>
 <body>
@@ -44,336 +44,357 @@
       </nav>
 
 
+    <div class="container card pt-3 px-3">
+        <form>
+            <div class="row form-group">
+                <div class="col col-md-4">
+                    <h4 class="">Select A Task</h4>
+                </div>
+                <div class="col">
+                    <select id="task-dropdown-header" class="form-control form-control-sm"></select>
+                </div>
+            </div>
 
+            <div class="row form-group form-inline">
+                <div class="col col-md-4">
+                    <h4 class="">Work For...</h4>
+                </div>
+                <div class="col">
+                    <!-- Hour -->
+                    <select id="set-task-hour" class="form-control form-control-sm">
+                        <option value="0" selected>0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                        <option value="17">17</option>
+                        <option value="18">18</option>
+                        <option value="19">19</option>
+                        <option value="20">20</option>
+                        <option value="21">21</option>
+                        <option value="22">22</option>
+                        <option value="23">23</option>
+                    </select>
+                    <small class="text-muted text-center">hour</small>
+                </div>
+                <div class="col">
+                    <!-- Minute -->
+                    <select id="set-task-min" class="form-control form-control-sm">
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                        <option value="17">17</option>
+                        <option value="18">18</option>
+                        <option value="19">19</option>
+                        <option value="20" selected>20</option>
+                        <option value="21">21</option>
+                        <option value="22">22</option>
+                        <option value="23">23</option>
+                        <option value="24">24</option>
+                        <option value="25">25</option>
+                        <option value="26">26</option>
+                        <option value="27">27</option>
+                        <option value="28">28</option>
+                        <option value="29">29</option>
+                        <option value="30">30</option>
+                        <option value="31">31</option>
+                        <option value="32">32</option>
+                        <option value="33">33</option>
+                        <option value="34">34</option>
+                        <option value="35">35</option>
+                        <option value="36">36</option>
+                        <option value="37">37</option>
+                        <option value="38">38</option>
+                        <option value="39">39</option>
+                        <option value="40">40</option>
+                        <option value="41">41</option>
+                        <option value="42">42</option>
+                        <option value="43">43</option>
+                        <option value="44">44</option>
+                        <option value="45">45</option>
+                        <option value="46">46</option>
+                        <option value="47">47</option>
+                        <option value="48">48</option>
+                        <option value="49">49</option>
+                        <option value="50">50</option>
+                        <option value="51">51</option>
+                        <option value="52">52</option>
+                        <option value="53">53</option>
+                        <option value="54">54</option>
+                        <option value="55">55</option>
+                        <option value="56">56</option>
+                        <option value="57">57</option>
+                        <option value="58">58</option>
+                        <option value="59">59</option>
+                    </select>
+                    <small class="text-muted text-center">min</small>
+                </div>
 
-    <!-- Temporary set timer input: -->
-    <div class="container" style="text-align: center;">
-        <!-- Simple Timers Form -->
-        <h2>Set Timer:</h2>
-        <div id="set-task-time" class="form-group">
-            <p>Task Time:</p>
-            <!-- Hour -->
-            <select id="set-task-hour" class="form-control tiny-form">
-                <option value="0">0</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
-                <option value="9">9</option>
-                <option value="10">10</option>
-                <option value="11">11</option>
-                <option value="12">12</option>
-                <option value="13">13</option>
-                <option value="14">14</option>
-                <option value="15">15</option>
-                <option value="16">16</option>
-                <option value="17">17</option>
-                <option value="18">18</option>
-                <option value="19">19</option>
-                <option value="20">20</option>
-                <option value="21">21</option>
-                <option value="22">22</option>
-                <option value="23">23</option>
-            </select>
-            <label for="set-task-hour" class="set-unit-labels ">h</label>
-            <!-- Minute -->
-            <select id="set-task-min" class="form-control tiny-form">
-                <option value="0">0</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
-                <option value="9">9</option>
-                <option value="10">10</option>
-                <option value="11">11</option>
-                <option value="12">12</option>
-                <option value="13">13</option>
-                <option value="14">14</option>
-                <option value="15">15</option>
-                <option value="16">16</option>
-                <option value="17">17</option>
-                <option value="18">18</option>
-                <option value="19">19</option>
-                <option value="20">20</option>
-                <option value="21">21</option>
-                <option value="22">22</option>
-                <option value="23">23</option>
-                <option value="24">24</option>
-                <option value="25">25</option>
-                <option value="26">26</option>
-                <option value="27">27</option>
-                <option value="28">28</option>
-                <option value="29">29</option>
-                <option value="30">30</option>
-                <option value="31">31</option>
-                <option value="32">32</option>
-                <option value="33">33</option>
-                <option value="34">34</option>
-                <option value="35">35</option>
-                <option value="36">36</option>
-                <option value="37">37</option>
-                <option value="38">38</option>
-                <option value="39">39</option>
-                <option value="40">40</option>
-                <option value="41">41</option>
-                <option value="42">42</option>
-                <option value="43">43</option>
-                <option value="44">44</option>
-                <option value="45">45</option>
-                <option value="46">46</option>
-                <option value="47">47</option>
-                <option value="48">48</option>
-                <option value="49">49</option>
-                <option value="50">50</option>
-                <option value="51">51</option>
-                <option value="52">52</option>
-                <option value="53">53</option>
-                <option value="54">54</option>
-                <option value="55">55</option>
-                <option value="56">56</option>
-                <option value="57">57</option>
-                <option value="58">58</option>
-                <option value="59">59</option>
-            </select>
-            <label for="set-task-min" class="set-unit-labels ">m</label>
-            <!-- Second -->
-            <select id="set-task-sec" class="form-control tiny-form">
-                <option value="0">0</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
-                <option value="9">9</option>
-                <option value="10">10</option>
-                <option value="11">11</option>
-                <option value="12">12</option>
-                <option value="13">13</option>
-                <option value="14">14</option>
-                <option value="15">15</option>
-                <option value="16">16</option>
-                <option value="17">17</option>
-                <option value="18">18</option>
-                <option value="19">19</option>
-                <option value="20">20</option>
-                <option value="21">21</option>
-                <option value="22">22</option>
-                <option value="23">23</option>
-                <option value="24">24</option>
-                <option value="25">25</option>
-                <option value="26">26</option>
-                <option value="27">27</option>
-                <option value="28">28</option>
-                <option value="29">29</option>
-                <option value="30">30</option>
-                <option value="31">31</option>
-                <option value="32">32</option>
-                <option value="33">33</option>
-                <option value="34">34</option>
-                <option value="35">35</option>
-                <option value="36">36</option>
-                <option value="37">37</option>
-                <option value="38">38</option>
-                <option value="39">39</option>
-                <option value="40">40</option>
-                <option value="41">41</option>
-                <option value="42">42</option>
-                <option value="43">43</option>
-                <option value="44">44</option>
-                <option value="45">45</option>
-                <option value="46">46</option>
-                <option value="47">47</option>
-                <option value="48">48</option>
-                <option value="49">49</option>
-                <option value="50">50</option>
-                <option value="51">51</option>
-                <option value="52">52</option>
-                <option value="53">53</option>
-                <option value="54">54</option>
-                <option value="55">55</option>
-                <option value="56">56</option>
-                <option value="57">57</option>
-                <option value="58">58</option>
-                <option value="59">59</option>
-            </select>
-            <label for="set-task-sec" class="set-unit-labels">s</label>
-        </div>
+                <div class="col">
+                    <!-- Second -->
+                    <select id="set-task-sec" class="form-control form-control-sm">
+                        <option value="0" selected>0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                        <option value="17">17</option>
+                        <option value="18">18</option>
+                        <option value="19">19</option>
+                        <option value="20">20</option>
+                        <option value="21">21</option>
+                        <option value="22">22</option>
+                        <option value="23">23</option>
+                        <option value="24">24</option>
+                        <option value="25">25</option>
+                        <option value="26">26</option>
+                        <option value="27">27</option>
+                        <option value="28">28</option>
+                        <option value="29">29</option>
+                        <option value="30">30</option>
+                        <option value="31">31</option>
+                        <option value="32">32</option>
+                        <option value="33">33</option>
+                        <option value="34">34</option>
+                        <option value="35">35</option>
+                        <option value="36">36</option>
+                        <option value="37">37</option>
+                        <option value="38">38</option>
+                        <option value="39">39</option>
+                        <option value="40">40</option>
+                        <option value="41">41</option>
+                        <option value="42">42</option>
+                        <option value="43">43</option>
+                        <option value="44">44</option>
+                        <option value="45">45</option>
+                        <option value="46">46</option>
+                        <option value="47">47</option>
+                        <option value="48">48</option>
+                        <option value="49">49</option>
+                        <option value="50">50</option>
+                        <option value="51">51</option>
+                        <option value="52">52</option>
+                        <option value="53">53</option>
+                        <option value="54">54</option>
+                        <option value="55">55</option>
+                        <option value="56">56</option>
+                        <option value="57">57</option>
+                        <option value="58">58</option>
+                        <option value="59">59</option>
+                    </select>
+                    <small class="text-muted text-center">sec</small>
+                </div>
+            </div>
 
-        <div id="set-break-time" class="form-group">
-            <p>Break Time:</p>
-            <!-- As multiple select inputs in hour, min, sec -->
-            <!-- Hour -->
-            <select id="set-break-hour" class="form-control tiny-form">
-                <option value="0">0</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
-                <option value="9">9</option>
-                <option value="10">10</option>
-                <option value="11">11</option>
-                <option value="12">12</option>
-                <option value="13">13</option>
-                <option value="14">14</option>
-                <option value="15">15</option>
-                <option value="16">16</option>
-                <option value="17">17</option>
-                <option value="18">18</option>
-                <option value="19">19</option>
-                <option value="20">20</option>
-                <option value="21">21</option>
-                <option value="22">22</option>
-                <option value="23">23</option>
-            </select>
-            <label for="set-break-hour" class="set-unit-labels">h</label>
-            <!-- Minute -->
-            <select id="set-break-min" class="form-control tiny-form">
-                <option value="0">0</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
-                <option value="9">9</option>
-                <option value="10">10</option>
-                <option value="11">11</option>
-                <option value="12">12</option>
-                <option value="13">13</option>
-                <option value="14">14</option>
-                <option value="15">15</option>
-                <option value="16">16</option>
-                <option value="17">17</option>
-                <option value="18">18</option>
-                <option value="19">19</option>
-                <option value="20">20</option>
-                <option value="21">21</option>
-                <option value="22">22</option>
-                <option value="23">23</option>
-                <option value="24">24</option>
-                <option value="25">25</option>
-                <option value="26">26</option>
-                <option value="27">27</option>
-                <option value="28">28</option>
-                <option value="29">29</option>
-                <option value="30">30</option>
-                <option value="31">31</option>
-                <option value="32">32</option>
-                <option value="33">33</option>
-                <option value="34">34</option>
-                <option value="35">35</option>
-                <option value="36">36</option>
-                <option value="37">37</option>
-                <option value="38">38</option>
-                <option value="39">39</option>
-                <option value="40">40</option>
-                <option value="41">41</option>
-                <option value="42">42</option>
-                <option value="43">43</option>
-                <option value="44">44</option>
-                <option value="45">45</option>
-                <option value="46">46</option>
-                <option value="47">47</option>
-                <option value="48">48</option>
-                <option value="49">49</option>
-                <option value="50">50</option>
-                <option value="51">51</option>
-                <option value="52">52</option>
-                <option value="53">53</option>
-                <option value="54">54</option>
-                <option value="55">55</option>
-                <option value="56">56</option>
-                <option value="57">57</option>
-                <option value="58">58</option>
-                <option value="59">59</option>
-            </select>
-            <label for="set-break-min" class="set-unit-labels">m</label>
-            <!-- Second -->
-            <select id="set-break-sec" class="form-control tiny-form">
-                <option value="0">0</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
-                <option value="9">9</option>
-                <option value="10">10</option>
-                <option value="11">11</option>
-                <option value="12">12</option>
-                <option value="13">13</option>
-                <option value="14">14</option>
-                <option value="15">15</option>
-                <option value="16">16</option>
-                <option value="17">17</option>
-                <option value="18">18</option>
-                <option value="19">19</option>
-                <option value="20">20</option>
-                <option value="21">21</option>
-                <option value="22">22</option>
-                <option value="23">23</option>
-                <option value="24">24</option>
-                <option value="25">25</option>
-                <option value="26">26</option>
-                <option value="27">27</option>
-                <option value="28">28</option>
-                <option value="29">29</option>
-                <option value="30">30</option>
-                <option value="31">31</option>
-                <option value="32">32</option>
-                <option value="33">33</option>
-                <option value="34">34</option>
-                <option value="35">35</option>
-                <option value="36">36</option>
-                <option value="37">37</option>
-                <option value="38">38</option>
-                <option value="39">39</option>
-                <option value="40">40</option>
-                <option value="41">41</option>
-                <option value="42">42</option>
-                <option value="43">43</option>
-                <option value="44">44</option>
-                <option value="45">45</option>
-                <option value="46">46</option>
-                <option value="47">47</option>
-                <option value="48">48</option>
-                <option value="49">49</option>
-                <option value="50">50</option>
-                <option value="51">51</option>
-                <option value="52">52</option>
-                <option value="53">53</option>
-                <option value="54">54</option>
-                <option value="55">55</option>
-                <option value="56">56</option>
-                <option value="57">57</option>
-                <option value="58">58</option>
-                <option value="59">59</option>
-            </select>
-            <label for="set-break-sec" class="set-unit-labels">s</label>
-        </div>
+            <div class="row form-group form-inline">
+                <div class="col col-md-4">
+                    <h4 class="">Break For...</h4>
+                </div>
+                <div class="col">
+                    <select id="set-break-hour" class="form-control form-control-sm">
+                        <option value="0" selected>0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                        <option value="17">17</option>
+                        <option value="18">18</option>
+                        <option value="19">19</option>
+                        <option value="20">20</option>
+                        <option value="21">21</option>
+                        <option value="22">22</option>
+                        <option value="23">23</option>
+                    </select>
+                    <small class="text-muted">hour</small>
+                </div>
+                <div class="col">
+                    <select id="set-break-min" class="form-control form-control-sm">
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10" selected>10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                        <option value="17">17</option>
+                        <option value="18">18</option>
+                        <option value="19">19</option>
+                        <option value="20">20</option>
+                        <option value="21">21</option>
+                        <option value="22">22</option>
+                        <option value="23">23</option>
+                        <option value="24">24</option>
+                        <option value="25">25</option>
+                        <option value="26">26</option>
+                        <option value="27">27</option>
+                        <option value="28">28</option>
+                        <option value="29">29</option>
+                        <option value="30">30</option>
+                        <option value="31">31</option>
+                        <option value="32">32</option>
+                        <option value="33">33</option>
+                        <option value="34">34</option>
+                        <option value="35">35</option>
+                        <option value="36">36</option>
+                        <option value="37">37</option>
+                        <option value="38">38</option>
+                        <option value="39">39</option>
+                        <option value="40">40</option>
+                        <option value="41">41</option>
+                        <option value="42">42</option>
+                        <option value="43">43</option>
+                        <option value="44">44</option>
+                        <option value="45">45</option>
+                        <option value="46">46</option>
+                        <option value="47">47</option>
+                        <option value="48">48</option>
+                        <option value="49">49</option>
+                        <option value="50">50</option>
+                        <option value="51">51</option>
+                        <option value="52">52</option>
+                        <option value="53">53</option>
+                        <option value="54">54</option>
+                        <option value="55">55</option>
+                        <option value="56">56</option>
+                        <option value="57">57</option>
+                        <option value="58">58</option>
+                        <option value="59">59</option>
+                    </select>
+                    <small class="text-muted">min</small>
+                </div>
+                <div class="col">
+                    <select id="set-break-sec" class="form-control form-control-sm">
+                        <option value="0" selected>0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                        <option value="17">17</option>
+                        <option value="18">18</option>
+                        <option value="19">19</option>
+                        <option value="20">20</option>
+                        <option value="21">21</option>
+                        <option value="22">22</option>
+                        <option value="23">23</option>
+                        <option value="24">24</option>
+                        <option value="25">25</option>
+                        <option value="26">26</option>
+                        <option value="27">27</option>
+                        <option value="28">28</option>
+                        <option value="29">29</option>
+                        <option value="30">30</option>
+                        <option value="31">31</option>
+                        <option value="32">32</option>
+                        <option value="33">33</option>
+                        <option value="34">34</option>
+                        <option value="35">35</option>
+                        <option value="36">36</option>
+                        <option value="37">37</option>
+                        <option value="38">38</option>
+                        <option value="39">39</option>
+                        <option value="40">40</option>
+                        <option value="41">41</option>
+                        <option value="42">42</option>
+                        <option value="43">43</option>
+                        <option value="44">44</option>
+                        <option value="45">45</option>
+                        <option value="46">46</option>
+                        <option value="47">47</option>
+                        <option value="48">48</option>
+                        <option value="49">49</option>
+                        <option value="50">50</option>
+                        <option value="51">51</option>
+                        <option value="52">52</option>
+                        <option value="53">53</option>
+                        <option value="54">54</option>
+                        <option value="55">55</option>
+                        <option value="56">56</option>
+                        <option value="57">57</option>
+                        <option value="58">58</option>
+                        <option value="59">59</option>
+                    </select>
+                    <small class="text-muted">sec</small>
+                </div>
+            </div>
 
-        <div id="set-times">
-            <button id="set-times-button" class="btn btn-primary">Set</button>
-        </div>
+            <div class="row form-group">
+                <div class="col col-md-12 text-center">
+                    <button id="set-times-button" class="btn btn-primary">Set Timer</button>
+                </div>
+            </div>
+        </form>
     </div>
 
     <br>
@@ -381,12 +402,10 @@
     <!-- Timer -->
     <div id="timer-container" class="container timer-container task-timer">
 
-        <!-- TIMER HEADER -->
-        <!-- The timer-container's class will determine which header items to show/hide -->
-        <!-- TASK HEADER as Select input -->
-        <select id="task-dropdown-header" class="selectpicker timer-header task-dropdown-header">
-            <option class="task-dropdown-option" value="" disabled selected hidden>Select Your Task</option>
-        </select>
+        <!-- TASK HEADER -->
+        <div id="task-timer-title-container" class="timer-header task-header">
+            <div id="task-timer-title"></div>
+        </div>
 
         <!-- BREAK HEADER -->
         <div id="break-timer-title-container" class="timer-header break-header">
@@ -401,216 +420,27 @@
 
 
         <!-- BUTTONS -->
-        <div id="timer-buttons-group" class="btn-group timer-button" role="group">
-            <!-- Edit Duration (Toggles input fields) -->
-            <button id="edit-duration-toggle" title="Change Timer Duration" class="btn btn-secondary" type="button" data-toggle="collapse" data-target="#edit-duration-inputs" aria-expanded="false" aria-controls="collapseExample">
-                <i class="fa fa-pencil"></i>
-            </button>
-
-            <!-- Reset (Restart the timer) -->
-            <button id="timer-reset" title="Restart Timer" class="btn btn-secondary" type="button"><i class="fa fa-repeat"></i></button>
-
+        <div id="timer-buttons-group" class="timer-button" role="">
+            <!-- Reset -->
+            <button id="timer-reset" title="Reset Timer" class="btn btn-secondary" type="button"><i class="fa fa-repeat"></i></button>
             <!-- Start/Pause (toggles with JS) -->
             <button id="timer-start-pause" title="Start Timer" class="btn btn-secondary type="button"><i class="fa fa-play"></i></button>
-
             <!-- Stop  -->
             <button id="timer-stop" title="Stop Timer" class="btn btn-secondary type="button"><i class="fa fa-stop"></i></button>
-
             <!-- Skip -->
             <button id="timer-skip" title="Skip" class="btn btn-secondary" type="button"><i class="fa fa-forward"></i></button>
         </div>
 
-
-        <!-- EDIT DURATION INPUTS -->
-
-        <div id="edit-duration-inputs" class="collapse container">
-
-            <div class="edit-dur-row row">
-                <div class="col">
-                    <div class="form-group">
-                        <!-- Hour -->
-                        <select id="edit-hour" class="selectpicker form-control">
-                            <option value="0">0</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                            <option value="7">7</option>
-                            <option value="8">8</option>
-                            <option value="9">9</option>
-                            <option value="10">10</option>
-                            <option value="11">11</option>
-                            <option value="12">12</option>
-                            <option value="13">13</option>
-                            <option value="14">14</option>
-                            <option value="15">15</option>
-                            <option value="16">16</option>
-                            <option value="17">17</option>
-                            <option value="18">18</option>
-                            <option value="19">19</option>
-                            <option value="20">20</option>
-                            <option value="21">21</option>
-                            <option value="22">22</option>
-                            <option value="23">23</option>
-                        </select>
-                        <label for="edit-hour" class="set-unit-labels text-muted">hour</label>
-                    </div>
-                </div>
-
-                <div class="col">
-                    <div class="form-group">
-                        <!-- Minute -->
-                        <select id="edit-min" class="selectpicker form-control">
-                            <option value="0">0</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                            <option value="7">7</option>
-                            <option value="8">8</option>
-                            <option value="9">9</option>
-                            <option value="10">10</option>
-                            <option value="11">11</option>
-                            <option value="12">12</option>
-                            <option value="13">13</option>
-                            <option value="14">14</option>
-                            <option value="15">15</option>
-                            <option value="16">16</option>
-                            <option value="17">17</option>
-                            <option value="18">18</option>
-                            <option value="19">19</option>
-                            <option value="20">20</option>
-                            <option value="21">21</option>
-                            <option value="22">22</option>
-                            <option value="23">23</option>
-                            <option value="24">24</option>
-                            <option value="25">25</option>
-                            <option value="26">26</option>
-                            <option value="27">27</option>
-                            <option value="28">28</option>
-                            <option value="29">29</option>
-                            <option value="30">30</option>
-                            <option value="31">31</option>
-                            <option value="32">32</option>
-                            <option value="33">33</option>
-                            <option value="34">34</option>
-                            <option value="35">35</option>
-                            <option value="36">36</option>
-                            <option value="37">37</option>
-                            <option value="38">38</option>
-                            <option value="39">39</option>
-                            <option value="40">40</option>
-                            <option value="41">41</option>
-                            <option value="42">42</option>
-                            <option value="43">43</option>
-                            <option value="44">44</option>
-                            <option value="45">45</option>
-                            <option value="46">46</option>
-                            <option value="47">47</option>
-                            <option value="48">48</option>
-                            <option value="49">49</option>
-                            <option value="50">50</option>
-                            <option value="51">51</option>
-                            <option value="52">52</option>
-                            <option value="53">53</option>
-                            <option value="54">54</option>
-                            <option value="55">55</option>
-                            <option value="56">56</option>
-                            <option value="57">57</option>
-                            <option value="58">58</option>
-                            <option value="59">59</option>
-                        </select>
-                        <label for="edit-min" class="set-unit-labels text-muted">min</label>
-                    </div>
-                </div>
-
-                <div class="col">
-                    <div class="form-group">
-                        <!-- Second -->
-                        <select id="edit-sec" class="selectpicker form-control">
-                            <option value="0">0</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                            <option value="7">7</option>
-                            <option value="8">8</option>
-                            <option value="9">9</option>
-                            <option value="10">10</option>
-                            <option value="11">11</option>
-                            <option value="12">12</option>
-                            <option value="13">13</option>
-                            <option value="14">14</option>
-                            <option value="15">15</option>
-                            <option value="16">16</option>
-                            <option value="17">17</option>
-                            <option value="18">18</option>
-                            <option value="19">19</option>
-                            <option value="20">20</option>
-                            <option value="21">21</option>
-                            <option value="22">22</option>
-                            <option value="23">23</option>
-                            <option value="24">24</option>
-                            <option value="25">25</option>
-                            <option value="26">26</option>
-                            <option value="27">27</option>
-                            <option value="28">28</option>
-                            <option value="29">29</option>
-                            <option value="30">30</option>
-                            <option value="31">31</option>
-                            <option value="32">32</option>
-                            <option value="33">33</option>
-                            <option value="34">34</option>
-                            <option value="35">35</option>
-                            <option value="36">36</option>
-                            <option value="37">37</option>
-                            <option value="38">38</option>
-                            <option value="39">39</option>
-                            <option value="40">40</option>
-                            <option value="41">41</option>
-                            <option value="42">42</option>
-                            <option value="43">43</option>
-                            <option value="44">44</option>
-                            <option value="45">45</option>
-                            <option value="46">46</option>
-                            <option value="47">47</option>
-                            <option value="48">48</option>
-                            <option value="49">49</option>
-                            <option value="50">50</option>
-                            <option value="51">51</option>
-                            <option value="52">52</option>
-                            <option value="53">53</option>
-                            <option value="54">54</option>
-                            <option value="55">55</option>
-                            <option value="56">56</option>
-                            <option value="57">57</option>
-                            <option value="58">58</option>
-                            <option value="59">59</option>
-                        </select>
-                        <label for="edit-sec" class="set-unit-labels text-muted">sec</label>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Submit -->
-            <button id="edit-duration-submit" class="timer-button set-button btn btn-sm btn-primary" type="button">Set Duration</button>
-
-        </div>
     </div>
-    
-<div class="container">
-    <br>
-    <h6>Time Spent on Task:</h6>
-    <p id="total task"></p>
-    <input id="total_time" hidden type="number">
 
-</div>
+    <br><br>
+    <div class="container text-center">
+        <h4>Time Spent on Task:</h4>
+        <h4 id="total task"></h4>
+        <input id="total_time" hidden type="number" class="">
+    </div>
+
+    <br><br><br>
 
 <script src="/static/timer.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
