@@ -1,0 +1,51 @@
+<%- include("partials/header") %>
+<div class="container" style="padding-bottom: 20%; font-size: large;"> 
+    <h1>Tasks</h1>
+    <form onsubmit="return false" >
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          
+          <label for="category" class="pt-5"> Select Category</label>
+          <select id="category_list" class="form-control">
+          </select>
+        </div>
+      </div>
+      
+      <div class="form-row ">
+        <div class="form-group col-md-6">
+          <label for="taskName" class="pt-4">Task name</label>
+          <input type="text" class="form-control" id="task_name" placeholder="Enter a task">
+          <label for="taskGoal" class="pt-4 d-block">Task Goal</label>
+          <input type="number" min="0" class=" d-inline taskTime" id="task_hours" placeholder="Hours">
+          <input type="number" min="0" class=" d-inline taskTime" id="task_minutes" placeholder="Minutes" >
+            <label for="taskNotes" class="pt-3 d-block">Task Notes</label>
+            <textarea class="form-control" id="task_description" rows="3"></textarea>
+            <label for="submit" class="pt-3"> Now create your task!</label>
+            <button type="submit" id="create_task" class="btn btn-primary d-block">Create Task</button>
+        </div>
+        
+        <div class="col-md-6">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Category</th>
+                <th scope="col">Task</th>
+                <th scope="col">Goal Time</th>
+                <th scope="col">Time Accrued</th>
+                <th scope="col">Goal Met</th>
+              </tr>
+            </thead>
+            <tbody id="table_body">
+              
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </form>
+  </div>
+  <script>
+    $(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+  })
+  </script>
+  <%- include("partials/footer") %>

@@ -30,35 +30,36 @@ app.use(bodyParser.json());
  */
 app.use('/api', api);
 app.set('views', 'views');
-app.use('/static', express.static('public'));
+app.use(express.static('public'));
 app.engine('html', require('ejs').renderFile);
+app.set('view engine', 'ejs');
 
 app.get('/', function(req,res){
-  res.render('signin.html');
+  res.render('signin');
 })
 
 app.get('/signup', function(req, res){
-  res.render('signup.html');
+  res.render('signup');
 })
 
 app.get('/view_tasks', function(req,res){
-  res.render('tasks.html');
+  res.render('tasks');
 })
 
 app.get('/view_categories', function(req,res){
-  res.render('category.html');
+  res.render('category');
 })
 
 app.get('/view_account', function(req,res){
-  res.render('account.html');
+  res.render('account');
 })
 
 app.get('/timer_page', function(req,res){
-  res.render('timer.html');
+  res.render('timer');
 })
 
 app.get('/edit_account', function(req,res){
-  res.render('editaccount.html');
+  res.render('editaccount');
 })
 
 /*

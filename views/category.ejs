@@ -1,0 +1,68 @@
+<%- include("partials/header") %>
+<div class="container pt-5">
+    <h1>Categories</h1>
+
+    <form onsubmit="return false">
+      <div class="form-row">
+        <div class="form-group col-md-6 p-5">
+          <label for="category" class="pt-5"> Create a new Category</label>
+          <input type="text" class="form-control" name="category_name" id="category" placeholder="Enter a new Category here">
+          <button type="submit"  id="create_category" class="btn btn-primary d-block mt-3">Create Category</button>
+        </div>
+        <div class="col-md-4 p-5">
+          <table class="table" id="category_table">
+            <thead>
+              <tr>
+                <th scope="col">Categories</th>
+              </tr>
+            </thead>
+            <!-- This table is filled in via JavaScript -->
+            <tbody>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <!-- Graphics: -->
+  <div class="container">
+    <h2>What You've Worked On</h2>
+    <div class="row">
+      <div class="col-md-6 col-sm-12">
+        <div class="card">
+          <div class="card-body">
+            <canvas id="chart1"></canvas>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-sm-12">
+        <div class="card">
+          <div class="card-body">
+            <canvas id="chart2"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-md-12">
+        <table class="table table-bordered" id="goals_met">
+          <thead>
+            <tr>
+              <th>Category</th>
+              <th>Goals Met</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td hidden>
+                <i hidden id="check_mark" title="Goal Met" class="fa fa-2x fa-check-circle" style="color: #0F9D58;"></i>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <%- include("partials/footer") %>
