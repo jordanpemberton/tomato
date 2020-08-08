@@ -5,7 +5,7 @@ info:
   description: Tomato implementation of Pomedero
 
 paths:
-  /api/user:
+  /api/users:
     post:
       summary: Create a new User.
       description: >
@@ -41,6 +41,20 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+        '406':
+          description: >
+            Username already exists.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '409':
+          description: >
+            Email already exists.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         '500':
           description: >
             An internal server error occurred.
@@ -48,7 +62,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /api/user/{id}:
+  /api/users/{id}:
     parameters:
       - name: id
         in: path
@@ -125,6 +139,20 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+        '406':
+          description: >
+            Username already exists.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '409':
+          description: >
+            Email already exists.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         '500':
           description: >
             An internal server error occurred.
@@ -162,7 +190,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /api/user/{id}/reset/:
+  /api/users/{id}/reset/:
     parameters:
       - name: id
         in: path
@@ -204,7 +232,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /api/user/login:
+  /api/users/login:
     post:
       summary: Attempt to log in a User.
       description: >
@@ -250,6 +278,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+        '404':
+          description: >
+            Username does not exist
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         '500':
           description: >
             An internal server error occurred. occurred.
@@ -258,7 +293,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
 
-  /api/category:
+  /api/categories:
     get:
       summary: Fetch the list of all Categories for this User.
       description: >
@@ -327,7 +362,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /api/category/{id}:
+  /api/categories/{id}:
     parameters:
       - name: id
         in: path
