@@ -86,6 +86,7 @@ setTimesButton.addEventListener('click', function() {
     }
     // Display:
     taskTitle.innerText = taskName;
+    resetHeader();
     displayTimeLeft();
     event.preventDefault();
 })
@@ -162,6 +163,7 @@ function resetTimer() {
     // sessionStarted = false;
 
     // Display new countdown:
+    resetHeader();
     toggleTimerVisuals();
     displayTimeLeft();    
 }
