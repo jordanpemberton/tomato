@@ -115,7 +115,7 @@ router.patch('/:id', requireAuth,
                      isEmailUnique,
                      isUserUnique,
                      async (req, res, next) => {
-                       
+
   const db = getDB();
 
   //  Validate required fields here
@@ -210,24 +210,29 @@ router.post('/login', async (req, res, next) => {
         next(new TomatoError("Database error: " + err.message, 500));
       } else {
 
-        let input = req.body;
-        let dbUser = results[0];
-        console.log("== results", dbUser, "input", input);
+        if (results[0]) {
 
-        // Verify password
-        if (results && await bcrypt.compare(input.password, dbUser.password)) {
+          let input = req.body;
+          let dbUser = results[0];
+          console.log("== results", dbUser, "input", input);
 
-          // Token does not need crypt password
-          delete dbUser.password;
+          // Verify password
+          if (results && await bcrypt.compare(input.password, dbUser.password)) {
 
-          // Generate a JWT token with the user payload
-          const token = genAuthToken(dbUser);
+            // Token does not need crypt password
+            delete dbUser.password;
 
-          res.status(200).send({
-            token: token
-          });
+            // Generate a JWT token with the user payload
+            const token = genAuthToken(dbUser);
+
+            res.status(200).send({
+              token: token
+            });
+          } else {
+            next(new TomatoError("Authentication failed.", 401));
+          }
         } else {
-          next(new TomatoError("Authentication failed.", 401));
+          next(new TomatoError("User not found.", 404));
         }
       }
     });
