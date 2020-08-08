@@ -1,5 +1,6 @@
 var categoriesDisplayed = [];
-var categoryArray = []
+var categoryArray = [];
+var tasksInCategory = [];
 function addToTable(item){
     let myTable = document.getElementById("category_table");
     let row = document.createElement("tr");
@@ -26,6 +27,20 @@ function updateCategories(item){
     }
 }
 
+
+window.addEventListener('load', function(event){
+    var req = new XMLHttpRequest();
+    req.open('GET', 'http://localhost:8000/api/tasks', true);
+    req.setRequestHeader("Authorization", "Bearer " + window.sessionStorage.getItem('token'));
+    req.addEventListener('load', function(){
+       if(req.status >= 200 && req.status < 400){
+            tasksInCategory = JSON.parse(req.responseText); 
+        } 
+    }) 
+    req.send(null);
+    event.preventDefault;
+})
+
 window.addEventListener('load', function(event){
     var req = new XMLHttpRequest();
     req.open('GET', 'http://localhost:8000/api/categories', true);
@@ -35,6 +50,7 @@ window.addEventListener('load', function(event){
             categoriesDisplayed = JSON.parse(req.responseText);
             categoriesDisplayed.forEach(addToTable);
             categoriesDisplayed.forEach(updateCategories);
+            
             /****************************************************************************************
              * Original Author: Jordan Pemberton
              * Original File: /public/categories.js
@@ -47,17 +63,37 @@ window.addEventListener('load', function(event){
                         '#e63946', '#390099', '#ffa700', '#ff0054', '#25badf', '#ef6412', '#55006a', '#0057e7' ];
 
             // Get categories and Tasks completed
-            let categories = [];
-            for(i = 0; i < categoriesDisplayed.length; i++){
-                categories[i] = categoriesDisplayed[i].category_name;
-            }
-            let categoryTasksCompleted = [];
-            for(i = 0; i < categoriesDisplayed.length; i++){
-                categoryTasksCompleted[i] = categoriesDisplayed[i].tasks_completed;
-            }
-            console.log(categories);
+            let tasks = {};
+            
+            tasksInCategory.forEach(category => {
+                if(tasks[category.category_name]){
+                    tasks[category.category_name] += category.time_completed;
+                }
+                else{
+                    tasks[category.category_name] = category.time_completed;
+                }
+            })
+
+            console.log(tasks)
+ 
+            let categories = {};
+            tasksInCategory.forEach(category => {
+                if(categories[category.category_name]){
+                    categories[category.category_name] = category.tasks_completed;
+                }
+                else{
+                    categories[category.category_name] = category.tasks_completed;
+                }
+            })
+
+            let barChartArray = Object.values(tasks);
+            barChartArray.forEach(function(item, index){
+                barChartArray[index] = (item / 60);
+            })
+            let categoryNames = Object.keys(tasks);
+            let numberOfTasksCompleted = Object.values(categories);
             // Pick Colors:
-            let {transpColors, solidColors} = assignColors(categoryTasksCompleted.length);
+            let {transpColors, solidColors} = assignColors(Object.keys(categories).length);
 
             // Make Color Palletes:
             function assignColors(dataLen) {
@@ -78,9 +114,9 @@ window.addEventListener('load', function(event){
                 new Chart(canvas, {
                     type: 'bar',
                     data: {
-                    labels: categories,
+                    labels: categoryNames,
                     datasets: [{
-                        data: categoryTasksCompleted,
+                        data: barChartArray,
                         backgroundColor: transpColors,
                         borderColor: solidColors,
                         borderWidth: 2
@@ -91,10 +127,16 @@ window.addEventListener('load', function(event){
                         yAxes: [{
                             scaleLabel: {
                                 display: true,
-                                labelString: 'Tasks Completed'
+                                labelString: 'Time Spent (in min)'
                             },
                             ticks: {
                                 beginAtZero: true
+                            }
+                        }],
+                        xAxes: [{
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Category Name'
                             }
                         }]
                     },
@@ -109,9 +151,9 @@ window.addEventListener('load', function(event){
                 new Chart(canvas, {
                     type: 'doughnut',
                     data: {
-                        labels: categories,
+                        labels: categoryNames,
                         datasets: [{
-                            data: categoryTasksCompleted,
+                            data: numberOfTasksCompleted,
                             backgroundColor: solidColors
                         }]
                     },
@@ -124,6 +166,11 @@ window.addEventListener('load', function(event){
                             labels: {
                             boxWidth: 12
                             }
+                        },
+                        title: {
+                            position: 'top',
+                            display: true,
+                            text: 'Number of Tasks Completed Per Category'
                         }
                     }
                 });
