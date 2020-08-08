@@ -1,6 +1,3 @@
-var categoriesDisplayed = [];
-var categoryArray = [];
-var tasksInCategory = [];
 function addToTable(item){
     let myTable = document.getElementById("category_table");
     let row = document.createElement("tr");
@@ -27,10 +24,10 @@ function updateCategories(item){
     }
 }
 
-
+var tasksInCategory = [];
 window.addEventListener('load', function(event){
     var req = new XMLHttpRequest();
-    req.open('GET', 'http://localhost:8000/api/tasks', true);
+    req.open('GET', 'http://localhost:8000/api/tasks', false);
     req.setRequestHeader("Authorization", "Bearer " + window.sessionStorage.getItem('token'));
     req.addEventListener('load', function(){
        if(req.status >= 200 && req.status < 400){
@@ -41,15 +38,56 @@ window.addEventListener('load', function(event){
     event.preventDefault;
 })
 
+function fillTimeSpentDictionary(responseObject, fillObject,){
+    responseObject.forEach(category=> {
+        if(fillObject[category.category_name]){
+            fillObject[category.category_name] += category.time_completed;
+        }
+        else{
+            fillObject[category.category_name] = category.time_completed;
+        }
+    })
+    return fillObject;
+}
+
+function fillTasksCompleteDictionary(responseObject, fillObject){
+    responseObject.forEach(category=> {
+        if(fillObject[category.category_name]){
+            fillObject[category.category_name] += category.tasks_completed;
+        }
+        else{
+            fillObject[category.category_name] = category.tasks_completed;
+        }
+    })
+    return fillObject;
+}
+
 window.addEventListener('load', function(event){
+    var categoriesDisplayed = [];
     var req = new XMLHttpRequest();
-    req.open('GET', 'http://localhost:8000/api/categories', true);
+    req.open('GET', 'http://localhost:8000/api/categories', false);
     req.setRequestHeader("Authorization", "Bearer " + window.sessionStorage.getItem('token'));
     req.addEventListener('load', function(){
         if(req.status >= 200 && req.status < 400){
             categoriesDisplayed = JSON.parse(req.responseText);
             categoriesDisplayed.forEach(addToTable);
             categoriesDisplayed.forEach(updateCategories);
+
+            let tasks = {}
+            tasks = fillTimeSpentDictionary(tasksInCategory, tasks);
+            
+
+            let categories = {};
+            categories = fillTasksCompleteDictionary(tasksInCategory, categories);
+            
+
+            let barChartArray = Object.values(tasks);
+            barChartArray.forEach(function(item, index){
+                barChartArray[index] = (item / 60);
+            })
+            let categoryNames = Object.keys(tasks);
+            let numberOfTasksCompleted = Object.values(categories);
+
             
             /****************************************************************************************
              * Original Author: Jordan Pemberton
@@ -62,36 +100,7 @@ window.addEventListener('load', function(event){
             const colorPalette = [  '#d62d20', '#ff5400', '#80b918', '#008744', '#02c39a', '#2a9d8f', '#5f0f40', 
                         '#e63946', '#390099', '#ffa700', '#ff0054', '#25badf', '#ef6412', '#55006a', '#0057e7' ];
 
-            // Get categories and Tasks completed
-            let tasks = {};
             
-            tasksInCategory.forEach(category => {
-                if(tasks[category.category_name]){
-                    tasks[category.category_name] += category.time_completed;
-                }
-                else{
-                    tasks[category.category_name] = category.time_completed;
-                }
-            })
-
-            console.log(tasks)
- 
-            let categories = {};
-            tasksInCategory.forEach(category => {
-                if(categories[category.category_name]){
-                    categories[category.category_name] = category.tasks_completed;
-                }
-                else{
-                    categories[category.category_name] = category.tasks_completed;
-                }
-            })
-
-            let barChartArray = Object.values(tasks);
-            barChartArray.forEach(function(item, index){
-                barChartArray[index] = (item / 60);
-            })
-            let categoryNames = Object.keys(tasks);
-            let numberOfTasksCompleted = Object.values(categories);
             // Pick Colors:
             let {transpColors, solidColors} = assignColors(Object.keys(categories).length);
 
@@ -186,8 +195,9 @@ window.addEventListener('load', function(event){
     req.send(null);
     event.preventDefault;
 })
-
-
+/****************************************************
+ * End of Jordan's Code
+ ***************************************************/
 
 const login = () => {
     document.getElementById("create_category").addEventListener("click", function(event) {
