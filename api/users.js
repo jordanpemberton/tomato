@@ -14,7 +14,9 @@ const TomatoError = require("../lib/tomato-error");
 const {
   genAuthToken,
   requireAuth,
-  userIsUser
+  userIsUser,
+  isEmailUnique,
+  isUserUnique
 } = require('../lib/auth');
 
 
@@ -23,7 +25,7 @@ const {
  *
  * @TODO add field validation
  */
-router.post('/', async (req, res, next) => {
+router.post('/', isEmailUnique, isUserUnique, async (req, res, next) => {
   const db = getDB();
   //  Validate required fields here
   if (true) {
@@ -108,7 +110,12 @@ router.get('/:id', requireAuth, userIsUser, (req, res, next) => {
  *
  * @TODO verify field set
  */
-router.patch('/:id', requireAuth, userIsUser, async (req, res, next) => {
+router.patch('/:id', requireAuth,
+                     userIsUser,
+                     isEmailUnique,
+                     isUserUnique,
+                     async (req, res, next) => {
+                       
   const db = getDB();
 
   //  Validate required fields here
