@@ -15,7 +15,7 @@ let breakTime = false;      //variable to keep track of when it is a break inter
 
 
 //Variables related to the sessions
-let pomodoroTimer = {workInterval: 0, breakInterval: 0};
+let pomodoroTimer = {workInterval: 0, breakInterval: 0, warningTime: 0};
 
 
 let timeLeftInSession = pomodoroTimer.workInterval;
@@ -39,6 +39,9 @@ const setTaskSec = document.querySelector('#set-task-sec');
 const setBreakHour = document.querySelector('#set-break-hour');
 const setBreakMin = document.querySelector('#set-break-min');
 const setBreakSec = document.querySelector('#set-break-sec');
+// Warning time inputs:
+const setWarningMin = document.querySelector('#set-warning-min');
+const setWarningSec = document.querySelector('#set-warning-sec');
 // Set Time Button:
 const setTimesButton = document.querySelector('#set-times-button');
 
@@ -83,6 +86,7 @@ setTimesButton.addEventListener('click', function() {
     }
     // Display:
     taskTitle.innerText = taskName;
+    resetHeader();
     displayTimeLeft();
     event.preventDefault();
 })
@@ -159,6 +163,7 @@ function resetTimer() {
     // sessionStarted = false;
 
     // Display new countdown:
+    resetHeader();
     toggleTimerVisuals();
     displayTimeLeft();    
 }
@@ -208,13 +213,16 @@ function toggleTimer(reset){
                             timeLeftInSession = pomodoroTimer.breakInterval;
                             swapSection();
                             displaySessionType();
+                            resetHeader(); //added 8/8 ddk
                         }
                         else{
                             timeLeftInSession = pomodoroTimer.workInterval;
                             swapSection();
                             displaySessionType();
+                            resetHeader(); //added 8/8 ddk
                         }
                     }
+                    intervalWarning(pomodoroTimer.warningTime);
                     displayTimeLeft();
                 }, 1000);   //set interval uses milliseconds, so this sets the interval of the timer to one second
             }
@@ -274,8 +282,35 @@ function displayFillBar(){
     countdownFill.style.setProperty('--countdown-fill-width', `${fillPercent}%`);
 }
 
+/****************************************************************************************
+ * Function Name: intervalWarning()
+ * Description: This function displays a warning by changing the color of the header
+ * when the timer gets below a set interval
+****************************************************************************************/
 
+function intervalWarning(timeInSeconds){
+    let warningTime = timeInSeconds;
 
+    if(isWorking){
+        if(timeLeftInSession == warningTime){
+            document.querySelector('.navbar').classList.add("timer-warning");
+        }
+    }
+    else if (breakTime){
+        if(timeLeftInSession == warningTime){
+            document.querySelector('.navbar').classList.add('break-warning');
+        }
+    }
+}
+/****************************************************************************************
+ * Function Name: resetHeader()
+ * Description: This function resets the warning header to its original color when the 
+ * clock stops.
+****************************************************************************************/
+function resetHeader(){
+    document.querySelector('.navbar').classList.remove('timer-warning');
+    document.querySelector('.navbar').classList.remove('break-warning');
+}
 /****************************************************************************************
  * Function Name: stopClock()
  * Description: This function stops the clock, and sets the timer to 0, signalling the
@@ -413,6 +448,14 @@ function setDurations(){
         let totalBreakSec = breakHourToSec + breakMinToSec + breakSec;
 
         pomodoroTimer.breakInterval = totalBreakSec;
+
+        // Set warning time: 
+        let warningMin = parseInt(document.querySelector('#set-warning-min').value);
+        let warningSec = parseInt(document.querySelector("#set-warning-sec").value);
+
+        let warningMinToSec = warningMin * 60;
+        let totalWarningSec = warningMinToSec + warningSec;
+        pomodoroTimer.warningTime = totalWarningSec;
     }
 }
 

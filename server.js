@@ -35,30 +35,37 @@ app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'ejs');
 
 app.get('/', function(req,res){
+  res.locals.title = "Sign In";
   res.render('signin');
 })
 
 app.get('/signup', function(req, res){
+  res.locals.title = "Sign Up"
   res.render('signup');
 })
 
 app.get('/view_tasks', function(req,res){
+  res.locals.title = "Tasks";
   res.render('tasks');
 })
 
 app.get('/view_categories', function(req,res){
+  res.locals.title = "View Categories";
   res.render('category');
 })
 
 app.get('/view_account', function(req,res){
+  res.locals.title = "View Account";
   res.render('account');
 })
 
 app.get('/timer_page', function(req,res){
+  res.locals.title = "Timer";
   res.render('timer');
 })
 
 app.get('/edit_account', function(req,res){
+  res.locals.title = "Edit Account";
   res.render('editaccount');
 })
 
