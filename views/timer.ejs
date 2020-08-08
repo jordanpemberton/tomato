@@ -78,7 +78,31 @@
                 <small class="text-muted">sec</small>
             </div>
         </div>
+        <div class="row form-group form-inline">
+            <div class="col col-md-4">
+                <h4 class="">Warning at...</h4>
+            </div>
+            <div class="col">
+                &nbsp;
+            </div>
+            <div class="col">
+                <select id="set-warning-min" class="form-control form-control-sm">
+                    <% for(i = 0; i < 60; i++) { %>
+                        <option value="<%=i%>"><%=i%></option>
+                        <% } %>
 
+                </select>
+                <small class="text-muted">min</small>
+            </div>
+            <div class="col">
+                <select id="set-warning-sec" class="form-control form-control-sm">
+                    <% for(i = 0; i < 60; i++) { %>
+                        <option value="<%=i%>"><%=i%></option>
+                        <% } %>
+                </select>
+                <small class="text-muted">sec</small>
+            </div>
+        </div>
         <div class="row form-group">
             <div class="col col-md-12 text-center">
                 <button id="set-times-button" class="btn btn-primary">Set Timer</button>

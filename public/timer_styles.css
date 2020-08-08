@@ -7,6 +7,8 @@
     --countdown-bar-bg-color: #dddddd;
     --countdown-fill-width: 0%;
     --countdown-fill-color: #00f17d;
+    --timer-warning: #d13834;
+    --break-warning: #88c057;
 }
 
 
@@ -131,6 +133,12 @@ div.hidden > * {
 .bg-light {
     background-color: #ffacaa!important;
     margin-bottom: 50px;
+}
+.timer-warning {
+    background-color: var(--timer-warning)!important;
+}
+.break-warning {
+    background-color: var(--break-warning)!important;
 }
 .centered {margin: 0 auto;}
 
