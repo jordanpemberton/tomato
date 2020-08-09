@@ -1,17 +1,23 @@
+
+// Init the jtw token object
 let userToken;
 
+
+// Function to login, and set the new jwt token for auth.
 const login = () => {
 
     document.getElementById("try_login").addEventListener("click", function(event) {
-        var payload = getSignUpData();
-        if (payload.name == "") {
-            return
-        }
+        
+        // Obtain the values
+        var email = document.getElementById("email").value;
+        var username = document.getElementById("username").value;
+        var password = document.getElementById("password").value;
+    
+        var newdata = {"username": username, "email": email, "password": password}
 
         var req = new XMLHttpRequest()
         req.open("POST", "http://localhost:8000/api/users/login", true);
         req.setRequestHeader('Content-Type', 'application/json');
-        console.log(payload)
         req.addEventListener("load", function() {
             if(req.status >= 200 && req.status < 400){
                 console.log("add success")
@@ -20,26 +26,16 @@ const login = () => {
                 console.log(sessionStorage.getItem('token'));
                 location.href = "/view_categories";
             } else {
+                // If incorrect data is entered.
                 console.log("Something is big wrong.", req.statusText)
+                alert("The username or password entered is invalid. Please try again.")
+                location.reload()
+                
             }});
-        req.send(JSON.stringify(payload));
+        req.send(JSON.stringify(newdata));
         
     });
 };
 
-const getSignUpData = () => {
-    console.log("hello there");
-    var email = document.getElementById("email").value;
-    var username = document.getElementById("username").value;
-    var password = document.getElementById("password").value;
-    
-
-    var newdata = {"username": username, "email": email, "password": password}
-    return newdata;
-
-}
-
-
 
 document.addEventListener("load", login());
-console.log("turtle")
