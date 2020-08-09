@@ -52,55 +52,47 @@ router.get('/', requireAuth, (req, res, next) => {
 /*
  * Create a new Category
  *
- * @TODO add field validation
  */
 router.post('/', requireAuth, (req, res, next) => {
   const db = getDB();
   // Fetch ID from JWT token
   let user_id = req.user.user_id;
 
-  //  Validate required fields here
-  if (true) {
-    try {
+  try {
 
-      console.log(" == insertCategory: ", req.body);
+    console.log(" == insertCategory: ", req.body);
 
-      let sql = 'INSERT INTO categories (user_id, category_name) VALUES (?, ?)';
+    let sql = 'INSERT INTO categories (user_id, category_name) VALUES (?, ?)';
 
-      let cat = [
-        user_id,
-        req.body.category_name
-      ];
-      console.log("== cat", cat);
+    let cat = [
+      user_id,
+      req.body.category_name
+    ];
+    console.log("== cat", cat);
 
-      db.query(sql, cat, function(err, results) {
-        if (err) {
-          // Pass any database errors to the error route
-          next(new TomatoError("Database error: " + err.message, 500));
-        } else {
-          console.log("== results ", results);
-          res.status(201).send({
-            id: results.insertId
-          });
-        }
-      });
+    db.query(sql, cat, function(err, results) {
+      if (err) {
+        // Pass any database errors to the error route
+        next(new TomatoError("Database error: " + err.message, 500));
+      } else {
+        console.log("== results ", results);
+        res.status(201).send({
+          id: results.insertId
+        });
+      }
+    });
 
-    } catch (err) {
-      console.log('== route err catch');
-      // Throw for all errors including DB issues
-      next(new TomatoError("Internal error adding category: " + err.message, 500));
-    }
-
-  } else {
-    next(new TomatoError("Request is not valid", 400));
+  } catch (err) {
+    console.log('== route err catch');
+    // Throw for all errors including DB issues
+    next(new TomatoError("Internal error adding category: " + err.message, 500));
   }
+
 });
 
 
 /*
  * Update a Category
- *
- * @TODO add field validation
  *
  */
 router.patch('/:id', requireAuth, (req, res, next) => {
@@ -108,7 +100,6 @@ router.patch('/:id', requireAuth, (req, res, next) => {
   // Fetch User Id from JWT token
   let user_id = req.user.user_id;
 
-  //  Validate required fields here
   try {
 
     console.log(" == updateCategory: ", req.body);

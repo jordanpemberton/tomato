@@ -60,43 +60,39 @@ router.post('/', requireAuth, (req, res, next) => {
   // Fetch ID from JWT token
   let user_id = req.user.user_id;
 
-  //  Validate required fields here
-  if (true) {
-    try {
+  try {
 
-      console.log(" == insertNewTask: ", req.body);
+    console.log(" == insertNewTask: ", req.body);
 
-      let sql = 'INSERT INTO tasks (user_id, category_id, task_name, description, time_duration) VALUES (?, ?, ?, ?, ?)';
-      const task = [
-        user_id,
-        req.body.category_id,
-        req.body.task_name,
-        req.body.description,
-        req.body.time_duration,
-      ];
+    let sql = 'INSERT INTO tasks (user_id, category_id, task_name, description, time_duration) VALUES (?, ?, ?, ?, ?)';
+    const task = [
+      user_id,
+      req.body.category_id,
+      req.body.task_name,
+      req.body.description,
+      req.body.time_duration,
+    ];
 
-      console.log("== task", task);
-      db.query(sql, task, function(err, results) {
-        if (err) {
-          // Pass any database errors to the error route
-          next(new TomatoError("Database error: " + err.message, 500));
-        } else {
-          console.log("== results ", results);
-          res.status(201).send({
-            id: results.insertId
-          });
-        }
-      });
+    console.log("== task", task);
+    db.query(sql, task, function(err, results) {
+      if (err) {
+        // Pass any database errors to the error route
+        next(new TomatoError("Database error: " + err.message, 500));
+      } else {
+        console.log("== results ", results);
+        res.status(201).send({
+          id: results.insertId
+        });
+      }
+    });
 
-    } catch (err) {
-      console.log('== route err catch');
-      // Throw for all errors including DB issues
-      next(new TomatoError("Internal error adding tas: " + err.message, 500));
-    }
-
-  } else {
-    next(new TomatoError("Request is not valid", 400));
+  } catch (err) {
+    console.log('== route err catch');
+    // Throw for all errors including DB issues
+    next(new TomatoError("Internal error adding tas: " + err.message, 500));
   }
+
+
 });
 
 
@@ -144,7 +140,6 @@ router.patch('/:id', requireAuth, (req, res, next) => {
   // Fetch ID from JWT token
   let user_id = req.user.user_id;
 
-  // Check here if field set matches
   try {
 
     console.log(" == updateTask: ", req.body);

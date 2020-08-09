@@ -23,46 +23,41 @@ const {
 /*
  * Create a new User account
  *
- * @TODO add field validation
  */
 router.post('/', isEmailUnique, isUserUnique, async (req, res, next) => {
   const db = getDB();
-  //  Validate required fields here
-  if (true) {
-    try {
+  try {
 
-      console.log(" == insertNewUser: ", req.body);
+    console.log(" == insertNewUser: ", req.body);
 
-      let sql = 'INSERT INTO users (username, email, password) VALUES (?, ?, ?)';
-      const passwordHash = await bcrypt.hash(req.body.password, 8);
-      const user = [
-        req.body.username,
-        req.body.email,
-        passwordHash
-      ];
+    let sql = 'INSERT INTO users (username, email, password) VALUES (?, ?, ?)';
+    const passwordHash = await bcrypt.hash(req.body.password, 8);
+    const user = [
+      req.body.username,
+      req.body.email,
+      passwordHash
+    ];
 
-      console.log("== user", user);
-      db.query(sql, user, function(err, results) {
-        if (err) {
-          // Pass any database errors to the error route
-          next(new TomatoError("Database error: " + err.message, 500));
-        } else {
-          console.log("== results ", results);
-          res.status(201).send({
-            id: results.insertId
-          });
-        }
-      });
+    console.log("== user", user);
+    db.query(sql, user, function(err, results) {
+      if (err) {
+        // Pass any database errors to the error route
+        next(new TomatoError("Database error: " + err.message, 500));
+      } else {
+        console.log("== results ", results);
+        res.status(201).send({
+          id: results.insertId
+        });
+      }
+    });
 
-    } catch (err) {
-      console.log('== route err catch');
-      // Throw for all errors including DB issues
-      next(new TomatoError("Internal error adding user: " + err.message, 500));
-    }
-
-  } else {
-    next(new TomatoError("Request is not valid", 400));
+  } catch (err) {
+    console.log('== route err catch');
+    // Throw for all errors including DB issues
+    next(new TomatoError("Internal error adding user: " + err.message, 500));
   }
+
+
 });
 
 
@@ -108,7 +103,6 @@ router.get('/:id', requireAuth, userIsUser, (req, res, next) => {
 /*
  * Update the details of a User
  *
- * @TODO verify field set
  */
 router.patch('/:id', requireAuth,
                      userIsUser,
@@ -118,7 +112,6 @@ router.patch('/:id', requireAuth,
 
   const db = getDB();
 
-  //  Validate required fields here
   try {
 
     console.log(" == updateUser: ", req.body);
@@ -149,17 +142,6 @@ router.patch('/:id', requireAuth,
   }
 
 });
-
-
-/*
- * Delete a User account
- *
- */
-// router.delete('/:id/reset', async (req, res, next) => {
-//   res.status(200).send({
-//     body: 'delete an account'
-//   });
-// });
 
 
 /*
