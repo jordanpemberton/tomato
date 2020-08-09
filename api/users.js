@@ -26,9 +26,8 @@ const {
  */
 router.post('/', isEmailUnique, isUserUnique, async (req, res, next) => {
   const db = getDB();
-  try {
 
-    console.log(" == insertNewUser: ", req.body);
+  try {
 
     let sql = 'INSERT INTO users (username, email, password) VALUES (?, ?, ?)';
     const passwordHash = await bcrypt.hash(req.body.password, 8);
@@ -38,13 +37,10 @@ router.post('/', isEmailUnique, isUserUnique, async (req, res, next) => {
       passwordHash
     ];
 
-    console.log("== user", user);
     db.query(sql, user, function(err, results) {
       if (err) {
-        // Pass any database errors to the error route
         next(new TomatoError("Database error: " + err.message, 500));
       } else {
-        console.log("== results ", results);
         res.status(201).send({
           id: results.insertId
         });
@@ -52,8 +48,6 @@ router.post('/', isEmailUnique, isUserUnique, async (req, res, next) => {
     });
 
   } catch (err) {
-    console.log('== route err catch');
-    // Throw for all errors including DB issues
     next(new TomatoError("Internal error adding user: " + err.message, 500));
   }
 
@@ -68,31 +62,19 @@ router.post('/', isEmailUnique, isUserUnique, async (req, res, next) => {
 router.get('/:id', requireAuth, userIsUser, (req, res, next) => {
   const db = getDB();
 
-  // Check here if ID of user matches ID of JWT token
-  console.log('== Bearer Token', req.user);
-
   try {
-
-    console.log(" == getUserDetails: ", req.params.id);
 
     let sql = 'SELECT user_id, username, email from users WHERE user_id = ?';
 
     db.query(sql, [req.params.id], function(err, results) {
       if (err) {
-        // Pass any database errors to the error route
         next(new TomatoError("Database error: " + err.message, 500));
       } else {
-        // Check for result not found
-
-        // if results
-        console.log('results', results);
         res.status(200).send(results[0]);
       }
     });
 
   } catch (err) {
-    console.log('== route err catch');
-    // Throw for all errors including DB issues
     next(new TomatoError("Internal error adding user: " + err.message, 500));
   }
 
@@ -105,43 +87,36 @@ router.get('/:id', requireAuth, userIsUser, (req, res, next) => {
  *
  */
 router.patch('/:id', requireAuth,
-                     userIsUser,
-                     isEmailUnique,
-                     isUserUnique,
-                     async (req, res, next) => {
+  userIsUser,
+  isEmailUnique,
+  isUserUnique,
+  async (req, res, next) => {
 
-  const db = getDB();
+    const db = getDB();
 
-  try {
+    try {
 
-    console.log(" == updateUser: ", req.body);
+      let sql = 'UPDATE users SET ? WHERE user_id = ?';
+      let user = req.body;
 
-    let sql = 'UPDATE users SET ? WHERE user_id = ?';
-    let user = req.body;
-    // Crypt the password if there was a password update
-    if (req.body.password) {
-      user.password = await bcrypt.hash(req.body.password, 8);
+      if (req.body.password) {
+        user.password = await bcrypt.hash(req.body.password, 8);
+      }
+
+      db.query(sql, [user, req.params.id], function(err, results) {
+        if (err) {
+          next(new TomatoError("Database error: " + err.message, 500));
+        } else {
+          res.status(200).send({});
+
+        }
+      });
+
+    } catch (err) {
+      next(new TomatoError("Internal error adding user: " + err.message, 500));
     }
 
-
-    db.query(sql, [user, req.params.id], function(err, results) {
-      if (err) {
-        // Pass any database errors to the error route
-        next(new TomatoError("Database error: " + err.message, 500));
-      } else {
-        console.log('results', results);
-        res.status(200).send({});
-
-      }
-    });
-
-  } catch (err) {
-    console.log('== route err catch');
-    // Throw for all errors including DB issues
-    next(new TomatoError("Internal error adding user: " + err.message, 500));
-  }
-
-});
+  });
 
 
 /*
@@ -153,14 +128,11 @@ router.delete('/:id/reset', requireAuth, userIsUser, (req, res, next) => {
 
   try {
 
-    console.log(" == resetUser: ", req.params.id);
-
     // MySQL FK ON CASCADE will delete tasks when categories are deleted
     let sql = 'DELETE from categories WHERE user_id = ? ;';
 
     db.query(sql, req.params.id, function(err, results) {
       if (err) {
-        // Pass any database errors to the error route
         next(new TomatoError("Database error: " + err.message, 500));
       } else {
         res.status(200).send({});
@@ -168,8 +140,6 @@ router.delete('/:id/reset', requireAuth, userIsUser, (req, res, next) => {
     });
 
   } catch (err) {
-    console.log('== route err catch');
-    // Throw for all errors including DB issues
     next(new TomatoError("Internal error adding user: " + err.message, 500));
   }
 });
@@ -184,11 +154,10 @@ router.post('/login', async (req, res, next) => {
 
   try {
 
-    // Fetch user details from the data base
     let sql = "SELECT * FROM users where username = ?";
+
     db.query(sql, req.body.username, async function(err, results) {
       if (err) {
-        // Pass any database errors to the error route
         next(new TomatoError("Database error: " + err.message, 500));
       } else {
 
@@ -196,20 +165,17 @@ router.post('/login', async (req, res, next) => {
 
           let input = req.body;
           let dbUser = results[0];
-          console.log("== results", dbUser, "input", input);
 
-          // Verify password
           if (results && await bcrypt.compare(input.password, dbUser.password)) {
 
             // Token does not need crypt password
             delete dbUser.password;
-
-            // Generate a JWT token with the user payload
             const token = genAuthToken(dbUser);
 
             res.status(200).send({
               token: token
             });
+
           } else {
             next(new TomatoError("Authentication failed.", 401));
           }
@@ -221,7 +187,6 @@ router.post('/login', async (req, res, next) => {
 
 
   } catch (err) {
-    console.error(err);
     next(new TomatoError("Authentication error.  Please try again later.", 500));
   }
 });
