@@ -4,45 +4,30 @@ function addToTable(item){
     myTable.appendChild(row);
     let cell = document.createElement("th");
     let value = row.appendChild(cell);
-    value.innerText = `${item.category_name}`;
+    value.innerText = `${item}`;
 }
 
 function updateCategories(item){
     let myTable = document.getElementById("goals_met");
-    let row = document.createElement("tr");
-    let cell = document.createElement("td");
-    let cell2 = document.createElement("td");
-    myTable.appendChild(row);
-    let value = row.appendChild(cell);
-    row.appendChild(cell2);
-    value.innerText = `${item.category_name}`;
-    for(i = 0; i < item.tasks_completed; i++){
-        let check = document.createElement('i');
-        check.className ="fa fa-2x fa-check-circle";
-        check.style.color = "#0F9D58";
-        cell2.append(check);
+    for(i = 0; i < Object.keys(item).length; i++){
+        let row = document.createElement("tr");
+        let cell = document.createElement("td");
+        let cell2 = document.createElement("td");
+        myTable.appendChild(row);
+        let value = row.appendChild(cell);
+        row.appendChild(cell2);
+        value.innerText = `${Object.keys(item)[i]}`;
+         for(j = 0; j < Object.values(item)[i]; j++){
+            let check = document.createElement('i');
+            check.className ="fa fa-2x fa-check-circle";
+            check.style.color = "#0F9D58";
+            cell2.append(check);
+        }
     }
+    
 }
 
 var tasksInCategory = [];
-function fillTasksInCategory(){
-    window.addEventListener('load', function(event){
-        var req = new XMLHttpRequest();
-        req.open('GET', 'http://localhost:8000/api/tasks', true);
-        req.setRequestHeader("Authorization", "Bearer " + window.sessionStorage.getItem('token'));
-        req.addEventListener('load', function(){
-           if(req.status >= 200 && req.status < 400){
-                tasksInCategory = JSON.parse(req.responseText); 
-            }
-            else {
-                alert("You do not have a valid login token needed to access this page. You will be redirected to the login screen.");
-                window.location.href='/';
-            }
-        }) 
-        req.send(null);
-        event.preventDefault;
-    })
-}
 
 function fillTimeSpentDictionary(responseObject, fillObject,){
     responseObject.forEach(category=> {
@@ -67,31 +52,37 @@ function fillTasksCompleteDictionary(responseObject, fillObject){
     })
     return fillObject;
 }
+
+
 function populateCharts(){
     window.addEventListener('load', function(event){
         var categoriesDisplayed = [];
         var req = new XMLHttpRequest();
-        req.open('GET', 'http://localhost:8000/api/categories', true);
+        req.open('GET', 'http://localhost:8000/api/tasks', true);
         req.setRequestHeader("Authorization", "Bearer " + window.sessionStorage.getItem('token'));
         req.addEventListener('load', function(){
             if(req.status >= 200 && req.status < 400){
                 categoriesDisplayed = JSON.parse(req.responseText);
-                categoriesDisplayed.forEach(addToTable);
-                categoriesDisplayed.forEach(updateCategories);
-                console.log(tasksInCategory)
+                console.log(categoriesDisplayed)
+                
+                
                 let tasks = {}
-                tasks = fillTimeSpentDictionary(tasksInCategory, tasks);
+                tasks = fillTimeSpentDictionary(categoriesDisplayed, tasks);
             
-
                 let categories = {};
-                categories = fillTasksCompleteDictionary(tasksInCategory, categories);
-            
+                let taskCompletedTable = [];
+                taskCompletedTable = categories;
+                console.log(taskCompletedTable)
+                categories = fillTasksCompleteDictionary(categoriesDisplayed, categories);
+                updateCategories(categories);
+                
 
                 let barChartArray = Object.values(tasks);
                 barChartArray.forEach(function(item, index){
                     barChartArray[index] = (item / 60);
                 })
                 let categoryNames = Object.keys(tasks);
+                categoryNames.forEach(addToTable);
                 let numberOfTasksCompleted = Object.values(categories);
 
             
@@ -196,6 +187,8 @@ function populateCharts(){
             makeDoughnutChart(pieChart);
             }
             else{
+                alert("You do not have a valid login token needed to access this page. You will be redirected to the login screen.");
+                window.location.href='/';
             }
         });
         req.send(null);
@@ -238,6 +231,5 @@ const getCategoryData = () => {
 }
 
 
-document.addEventListener("load", fillTasksInCategory());
 document.addEventListener("load", populateCharts());
 document.addEventListener("load", login());
