@@ -25,7 +25,7 @@ router.get('/', requireAuth, (req, res, next) => {
 
   try {
 
-    let sql = 'SELECT * from tasks INNER JOIN categories ON tasks.category_id = categories.category_id WHERE tasks.user_id = ?';
+    let sql = 'SELECT * from tasks RIGHT JOIN categories ON tasks.category_id = categories.category_id WHERE categories.user_id = ?';
 
     db.query(sql, user_id, function(err, results) {
       if (err) {
