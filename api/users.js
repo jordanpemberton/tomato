@@ -59,6 +59,7 @@ router.post('/', isEmailUnique, isUserUnique, async (req, res, next) => {
  *
  */
 router.get('/', requireAuth, (req, res, next) => {
+
   const db = getDB();
   let user_id = req.user.user_id;
 
@@ -124,6 +125,7 @@ router.patch('/', requireAuth,
  *
  */
 router.delete('/reset', requireAuth, (req, res, next) => {
+
   const db = getDB();
   let user_id = req.user.user_id;
 
