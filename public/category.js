@@ -209,8 +209,9 @@ function populateCharts(){
 const login = () => {
     document.getElementById("create_category").addEventListener("click", function(event) {
         var payload = getCategoryData();
-        if (payload.name == "") {
-            return
+        if (payload.category_name== "") {
+            alert("The category name cannot be null. Please try again.")
+            return;
         }
 
         var req = new XMLHttpRequest()

@@ -96,7 +96,6 @@ const remaketable = () => {
         if(req.status >= 200 && req.status < 400){
             let table = JSON.parse(req.responseText);
             table.forEach(element => {
-
                 makerow(element)
             });
         } else {

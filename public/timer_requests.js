@@ -10,6 +10,7 @@ window.addEventListener("load", function(event) {
         if(req.status >= 200 && req.status < 400){
             let tasks = JSON.parse(req.responseText);
             console.log(tasks)
+        
             tasks.forEach(element => {
               var option = document.createElement("option")
               option.value = element.task_id
@@ -34,19 +35,20 @@ var selectedTaskTimeCompleted;      //The time spent working on the selected tas
 document.getElementById("task-dropdown-header").addEventListener("change", function(event) {
     var req = new XMLHttpRequest()
     var id = document.getElementById("task-dropdown-header").value
+    console.log(id)
     req.open("GET", "http://localhost:8000/api/tasks/" + id,  true);
     req.setRequestHeader("Authorization", "Bearer " + window.sessionStorage.getItem('token'));
     req.addEventListener("load", function() {
         if(req.status >= 200 && req.status < 400){
             taskdata = JSON.parse(req.responseText);
             //following set data to the taskdata variable
-            selectedTaskCompleted = taskdata.tasks_completed;       
+            selectedTaskCompleted = taskdata.tasks_completed;
             selectedTaskIsCompleted = taskdata.completed;
             taskCategoryID = taskdata.category_id;
             selectedTaskGoalTime = taskdata.time_duration;
             selectedTaskTimeCompleted = taskdata.time_completed;
             console.log(taskCategoryID);
-            console.log(selectedTask)
+            //console.log(selectedTask)
         } else {
             console.log("Something is big wrong.", req.statusText)
         }});
