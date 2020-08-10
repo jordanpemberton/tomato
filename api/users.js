@@ -59,14 +59,15 @@ router.post('/', isEmailUnique, isUserUnique, async (req, res, next) => {
  * Get the details of a User
  *
  */
-router.get('/:id', requireAuth, userIsUser, (req, res, next) => {
+router.get('/', requireAuth, userIsUser, (req, res, next) => {
   const db = getDB();
+  let user_id = req.user.user_id;
 
   try {
 
     let sql = 'SELECT user_id, username, email from users WHERE user_id = ?';
 
-    db.query(sql, [req.params.id], function(err, results) {
+    db.query(sql, [user_id], function(err, results) {
       if (err) {
         next(new TomatoError("Database error: " + err.message, 500));
       } else {
@@ -86,13 +87,14 @@ router.get('/:id', requireAuth, userIsUser, (req, res, next) => {
  * Update the details of a User
  *
  */
-router.patch('/:id', requireAuth,
+router.patch('/', requireAuth,
   userIsUser,
   isEmailUnique,
   isUserUnique,
   async (req, res, next) => {
 
     const db = getDB();
+    let user_id = req.user.user_id;
 
     try {
 
@@ -103,7 +105,7 @@ router.patch('/:id', requireAuth,
         user.password = await bcrypt.hash(req.body.password, 8);
       }
 
-      db.query(sql, [user, req.params.id], function(err, results) {
+      db.query(sql, [user, user_id], function(err, results) {
         if (err) {
           next(new TomatoError("Database error: " + err.message, 500));
         } else {
@@ -123,15 +125,16 @@ router.patch('/:id', requireAuth,
  * Reset a User account - Delete all Categories & Tasks
  *
  */
-router.delete('/:id/reset', requireAuth, userIsUser, (req, res, next) => {
+router.delete('/reset', requireAuth, userIsUser, (req, res, next) => {
   const db = getDB();
+  let user_id = req.user.user_id;
 
   try {
 
     // MySQL FK ON CASCADE will delete tasks when categories are deleted
     let sql = 'DELETE from categories WHERE user_id = ? ;';
 
-    db.query(sql, req.params.id, function(err, results) {
+    db.query(sql, user_id, function(err, results) {
       if (err) {
         next(new TomatoError("Database error: " + err.message, 500));
       } else {
