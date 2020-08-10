@@ -12,7 +12,7 @@ window.addEventListener("load", function(event) {
         remaketable()
       } else {
         console.log("Something is big wrong.", req.statusText)
-        alert("You do not have a valid login token needed to access this page. You will be redirected to the login screen.")
+        alert("You do not have a valid login token needed to access this page. You will be redirected to the login screen.");
         window.location.href='/';
       }});
     req.send(null)

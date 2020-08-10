@@ -33,7 +33,11 @@ function fillTasksInCategory(){
         req.addEventListener('load', function(){
            if(req.status >= 200 && req.status < 400){
                 tasksInCategory = JSON.parse(req.responseText); 
-            } 
+            }
+            else {
+                alert("You do not have a valid login token needed to access this page. You will be redirected to the login screen.");
+                window.location.href='/';
+            }
         }) 
         req.send(null);
         event.preventDefault;
