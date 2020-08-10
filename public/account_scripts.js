@@ -2,7 +2,7 @@
 //Event listener for account data
 window.addEventListener("load", function(event) {
     var req = new XMLHttpRequest()
-    req.open("GET", "http://localhost:8000/users/", true);
+    req.open("GET", "http://localhost:8000/api/users/", true);
     req.setRequestHeader("Authorization", "Bearer " + window.sessionStorage.getItem('token'));
     req.addEventListener("load", function() {
         if(req.status >= 200 && req.status < 400){
