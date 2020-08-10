@@ -1,19 +1,25 @@
+
+// Make Get Request to check for valid token
 window.addEventListener("load", function(event) {
     var req = new XMLHttpRequest();
     req.open('GET', "http://localhost:8000/api/tasks", true);
     req.setRequestHeader("Authorization", "Bearer " + window.sessionStorage.getItem('token'));
     req.addEventListener('load',function(){
       if(req.status >= 200 && req.status < 400){
+        // If auth is sucessfull, make the tasks table and fill the task creation dropdown with categories
         appendcats()
         maketaskonclick()
+        remaketable()
       } else {
         console.log("Something is big wrong.", req.statusText)
+        alert("You do not have a valid login token needed to access this page. You will be redirected to the login screen.");
+        window.location.href='/';
       }});
     req.send(null)
-    event.preventDefault
+    event.preventDefault()
 })
 
-
+//Function to make a request to get the list of categories and fill the task creation dropdown.
 const appendcats = () => {
     var req = new XMLHttpRequest()
     req.open("GET", "http://localhost:8000/api/categories", true);
@@ -33,11 +39,11 @@ const appendcats = () => {
     req.send(null)
 };
 
-
+// Function to make a task. Creates an event handler on the submit button.
 const maketaskonclick = () => {
     document.getElementById("create_task").addEventListener("click", function(event) {
         var payload = gettaskdata();
-        if (payload.name == "") {
+        if (payload.task_name == "") {
             return
         }
 
@@ -57,6 +63,8 @@ const maketaskonclick = () => {
     });
 };
 
+
+//Function to get task data from the fields, and return it as an object with key value pairs.
 const gettaskdata = () => {
     var category_id = document.getElementById("category_list").value;
     var task_name = document.getElementById("task_name").value;
@@ -68,8 +76,19 @@ const gettaskdata = () => {
     return newdata;
 
 }
+
+
+// Function to remake the table after sucessful post request of a task.
 const remaketable = () => {
-    deleterows()
+    
+    if (document.querySelectorAll(".data_table_row") != null) {
+        rows = document.querySelectorAll(".data_table_row")
+        for (var row of rows) {
+            row.remove();
+        };
+    }
+
+
     var req = new XMLHttpRequest()
     req.open("GET", "http://localhost:8000/api/tasks", true);
     req.setRequestHeader("Authorization", "Bearer " + window.sessionStorage.getItem('token'));
@@ -86,7 +105,7 @@ const remaketable = () => {
     req.send(null)
 };
 
-
+//Function that makes a row of the table given object data.
 const makerow = (rowdata) => {
 
 
@@ -97,8 +116,6 @@ const makerow = (rowdata) => {
     th_text = document.createTextNode(rowdata.category_name) 
     th.appendChild(th_text)
     td = document.createElement("td")
-    //td.collapse = "tooltip";
-    //td.data-placement = "bottom";
     td.title = rowdata.description;
     td_text = document.createTextNode(rowdata.task_name);
     td.appendChild(td_text)
@@ -113,6 +130,8 @@ const makerow = (rowdata) => {
     icon_td = document.createElement("td")
     icon = document.createElement("i")
     icon.className = "fa fa-2x fa-check-circle";
+
+    // Sets the checkmark to green if the goal has been met.
     if (time_done.total_seconds >= time_goal.total_seconds) {
         icon.title = "Goal Met";
         icon.style.color = "#0F9D58";
@@ -122,6 +141,8 @@ const makerow = (rowdata) => {
         icon.title = "Goal Not Yet Met";
         icon.style.color = "#8e9499";
     };
+
+    //Append elements to the table row, then append the table row
 
     icon_td.appendChild(icon)
 
@@ -139,7 +160,7 @@ const makerow = (rowdata) => {
 
 };
 
-
+// Function to convert the number from int into the table format of h:m
 const return_time = (seconds) => {
     var hours = Math.floor(seconds / 3600);
     var minutes = Math.floor((seconds / 60) % 60);
@@ -154,17 +175,3 @@ const return_time = (seconds) => {
     return data
 
 }
-
-const deleterows = () => { 
-
-    if (document.querySelectorAll(".data_table_row") != null) {
-        rows = document.querySelectorAll(".data_table_row")
-        for (var row of rows) {
-            row.remove();
-        };
-    }
-    
-
-}
-
-window.addEventListener("load", remaketable());

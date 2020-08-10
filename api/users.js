@@ -14,7 +14,6 @@ const TomatoError = require("../lib/tomato-error");
 const {
   genAuthToken,
   requireAuth,
-  userIsUser,
   isEmailUnique,
   isUserUnique
 } = require('../lib/auth');
@@ -59,7 +58,8 @@ router.post('/', isEmailUnique, isUserUnique, async (req, res, next) => {
  * Get the details of a User
  *
  */
-router.get('/', requireAuth, userIsUser, (req, res, next) => {
+router.get('/', requireAuth, (req, res, next) => {
+
   const db = getDB();
   let user_id = req.user.user_id;
 
@@ -88,7 +88,6 @@ router.get('/', requireAuth, userIsUser, (req, res, next) => {
  *
  */
 router.patch('/', requireAuth,
-  userIsUser,
   isEmailUnique,
   isUserUnique,
   async (req, res, next) => {
@@ -125,7 +124,8 @@ router.patch('/', requireAuth,
  * Reset a User account - Delete all Categories & Tasks
  *
  */
-router.delete('/reset', requireAuth, userIsUser, (req, res, next) => {
+router.delete('/reset', requireAuth, (req, res, next) => {
+
   const db = getDB();
   let user_id = req.user.user_id;
 

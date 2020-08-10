@@ -6,10 +6,14 @@
         <h4>[Name]</h4>
         <h5>[Email]</h5>
       <button type="button" onclick="window.location.href='/edit_account'" class="btn btn-primary">Edit Account</button>
+      <button type="button" id="reset_data" class="btn btn-primary">Reset Account</button>
       <button type="button" onclick="alert('you are being logged out'); window.location.href='/'; window.sessionStorage.setItem('token', 0);" class="btn btn-primary">Logout</button>
     </div>
     </div>
   </div>
+
+
+  <script src="/account_scripts.js"></script>
 
   <%- include("partials/footer") %>
   
