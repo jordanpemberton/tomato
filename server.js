@@ -9,8 +9,6 @@ const express = require('express');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const TomatoError = require("./lib/tomato-error");
-// Extended logger
-//const logger = require('./lib/logger');
 const api = require('./api');
 const mysql = require('mysql');
 const dbConfig = require('./lib/config');
@@ -23,7 +21,6 @@ const port = process.env.PORT || 8000;
 const app = express();
 app.use(morgan('dev'));
 app.use(bodyParser.json());
-//app.use(logger);
 
 /*
  * API routes live under api/ directory
