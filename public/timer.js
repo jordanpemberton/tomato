@@ -65,16 +65,13 @@ const resetButton = document.querySelector("#timer-reset");
 
 // Set times input:
 setTimesButton.addEventListener('click', function() {
-    let inputHour = parseInt(document.querySelector("#set-task-hour").value);
-    let inputMin = parseInt(document.querySelector("#set-task-min").value);
-    let inputSec = parseInt(document.querySelector("#set-task-sec").value);
     // Get current Task Name: 
     let selectedID = taskSelect.value;
     let selected = document.querySelector(`option.task-dropdown-option[value="${selectedID}"]`);
     let taskName = selected.innerText;
+    
+    setDurations();
 
-    // Update duration:
-    setDurations('task', inputHour, inputMin, inputSec);
     // Update timeLeftInSession for correct timer session type:
     if (isWorking) {
         timeLeftInSession = pomodoroTimer.workInterval;
@@ -184,14 +181,16 @@ function toggleTimer(reset){
     //if the stop button is not pressed
     else{
         if(!sessionStarted){            //if the session hasn't started (before a time is put in for timer)
-            sessionStarted = true;      //starts the session
+            if (pomodoroTimer.workInterval > 0) {
+                sessionStarted = true;      //starts the session
+            }
         }
         if(isTimerRunning){             //if the timer is running, stops the timer
             clearInterval(clockTimer);
             isTimerRunning = false;
         }
         else{                           //if user tries to toggle the timer when there is no time left in the session
-            if(timeLeftInSession == 0){
+            if(timeLeftInSession <= 0){
                 console.log("no time"); //placeholder for possible front-end alert window
             }
             else{
@@ -203,7 +202,7 @@ function toggleTimer(reset){
                     if(isWorking){
                         timeSpentInSession++;       //while the work interval timer is running, adds time spent to the session
                     }
-                    if(timeLeftInSession == 0){     //when the timer reaches zero by counting down, switches intervals and continues
+                    if(timeLeftInSession <= 0){     //when the timer reaches zero by counting down, switches intervals and continues
                         if(isWorking){
                             timeLeftInSession = pomodoroTimer.breakInterval;
                             swapSection();
@@ -401,7 +400,9 @@ function setDurations(){
         let taskMinToSec = taskMin * 60;
         let totalTaskSec = taskHourToSec + taskMinToSec + taskSec;
 
-        pomodoroTimer.workInterval = totalTaskSec;
+        if (totalTaskSec > 0) {
+            pomodoroTimer.workInterval = totalTaskSec;
+        }
 
         // Set break time:
         let breakHour = parseInt(document.querySelector("#set-break-hour").value);
