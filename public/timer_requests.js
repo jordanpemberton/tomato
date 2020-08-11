@@ -16,7 +16,9 @@ window.addEventListener("load", function(event) {
               option.value = element.task_id
               option.text = element.task_name
               option.className = "task-dropdown-option"
-              document.getElementById("task-dropdown-header").appendChild(option)
+              if (option.text != "null") {
+                document.getElementById("task-dropdown-header").appendChild(option)
+              }
             });
         } else {
             console.log("Something is big wrong.", req.statusText)
