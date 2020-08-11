@@ -1,4 +1,14 @@
+var accountData
 
+function fillAccount(user){
+    let userName = document.getElementById("username");
+    let userText = document.createTextNode(user.username);
+    userName.appendChild(userText);
+
+    let userEmail = document.getElementById("user_email");
+    let emailText = document.createTextNode(user.email);
+    userEmail.appendChild(emailText);
+}
 //Event listener for account data
 window.addEventListener("load", function(event) {
     var req = new XMLHttpRequest()
@@ -6,7 +16,8 @@ window.addEventListener("load", function(event) {
     req.setRequestHeader("Authorization", "Bearer " + window.sessionStorage.getItem('token'));
     req.addEventListener("load", function() {
         if(req.status >= 200 && req.status < 400){
-            let accountdata = JSON.parse(req.responseText);
+            accountData = JSON.parse(req.responseText);
+            fillAccount(accountData);
     
         } else {
             console.log("Something is big wrong.", req.statusText)
