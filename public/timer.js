@@ -293,11 +293,13 @@ function intervalWarning(timeInSeconds){
     if(isWorking){
         if(timeLeftInSession == warningTime){
             document.querySelector('.navbar').classList.add("timer-warning");
+            document.querySelector('#work-warning').classList.add('tw-show');
         }
     }
     else if (breakTime){
         if(timeLeftInSession == warningTime){
             document.querySelector('.navbar').classList.add('break-warning');
+            document.querySelector('#break-warning').classList.add('bw-show');
         }
     }
 }
@@ -309,6 +311,8 @@ function intervalWarning(timeInSeconds){
 function resetHeader(){
     document.querySelector('.navbar').classList.remove('timer-warning');
     document.querySelector('.navbar').classList.remove('break-warning');
+    document.querySelector('#break-warning').classList.remove('bw-show');
+    document.querySelector('#work-warning').classList.remove('tw-show');
 }
 /****************************************************************************************
  * Function Name: stopClock()

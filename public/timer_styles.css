@@ -149,3 +149,18 @@ div.hidden > * {
     box-shadow: 0 0 0 0.2rem rgba(212, 109, 106, .25)!important;
 }
 .tiny-form {display: inline; max-width: 65px;}
+
+#work-warning, #break-warning {
+    margin: 0 auto; 
+    text-align: center; 
+    display: none; 
+    position: absolute; 
+    top: 50%; 
+    right: 50px; 
+    padding: 50px; 
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px rgba(0,0,0,0.3);
+}
+#work-warning { background-color: var(--timer-warning);}
+#break-warning {background-color: var(--break-warning);}
+.tw-show, .bw-show {display: block!important;}
