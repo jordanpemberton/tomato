@@ -89,17 +89,15 @@ router.get('/', requireAuth, (req, res, next) => {
  */
 router.patch('/', requireAuth,
   isEmailUnique,
-  isUserUnique,
   async (req, res, next) => {
 
     const db = getDB();
     let user_id = req.user.user_id;
-
     try {
 
       let sql = 'UPDATE users SET ? WHERE user_id = ?';
       let user = req.body;
-
+      console.log(user)
       if (req.body.password) {
         user.password = await bcrypt.hash(req.body.password, 8);
       }
@@ -109,7 +107,6 @@ router.patch('/', requireAuth,
           next(new TomatoError("Database error: " + err.message, 500));
         } else {
           res.status(200).send({});
-
         }
       });
 
