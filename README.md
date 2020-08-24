@@ -1,24 +1,48 @@
 # tomato
-OSU CS-361 Term Project: Pomodoro App
+OSU CS-361 Software Engineering I Term Project
 
+A Pomodoro-Style Timer Web App
 
 # Technology stack
 
 Frontend:
-HTML
-CSS
-Javascript
-Bootstrap 4
+* HTML 
+* CSS
+* Javascript
+* Bootstrap 4
 
+Backend:
 * NodeJS
 * Express Engine
-* Handlebars (possibly)
 * MySQL
 * jQuery / jQuery UI
+* EJS
 
-Architecture Diagram
 
-![Image of Architecture](https://github.com/jordanpemberton/tomato/blob/master/miscDocs/architecture_diagram.JPG)
+
+Task Page
+
+![Screenshot of Tasks Page](https://github.com/jordanpemberton/tomato/blob/master/miscDocs/tomato_documentation/Tasks.png)
+
+![Screenshot of Tasks Page, Creating Task](https://github.com/jordanpemberton/tomato/blob/master/miscDocs/tomato_documentation/TasksCreateTask.png)
+
+Category Page
+
+![Screenshot of Category Page](https://github.com/jordanpemberton/tomato/blob/master/miscDocs/tomato_documentation/Categories.png)
+
+Timer Page
+
+![Screenshot of Timer Page](https://github.com/jordanpemberton/tomato/blob/master/miscDocs/tomato_documentation/TimerInProgress.png)
+
+![Screenshot of Timer Page, Work Countdown Warning](https://github.com/jordanpemberton/tomato/blob/master/miscDocs/tomato_documentation/TimerWorkCountdownWarning.png)
+
+![Screenshot of Timer Page, Break Countdown Warning](https://github.com/jordanpemberton/tomato/blob/master/miscDocs/tomato_documentation/TimerBreakCountdownWarning.png)
+
+Account Page
 
 ![Screenshot of Account Page](https://github.com/jordanpemberton/tomato/blob/master/miscDocs/tomato_documentation/AccountPage.png)
 
+
+<!-- Architecture Diagram
+
+![Image of Architecture](https://github.com/jordanpemberton/tomato/blob/master/miscDocs/architecture_diagram.JPG) -->
