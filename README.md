@@ -20,3 +20,5 @@ Architecture Diagram
 
 ![Image of Architecture](https://github.com/jordanpemberton/tomato/blob/master/miscDocs/architecture_diagram.JPG)
 
+![Screenshot of Account Page](https://github.com/jordanpemberton/tomato/blob/master/miscDocs/tomato_documentation/AccountPage.png)
+
