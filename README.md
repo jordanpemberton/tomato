@@ -1,5 +1,5 @@
 # tomato
-osu cs-361 term project
+OSU CS-361 Term Project: Pomodoro App
 
 
 # Technology stack
@@ -18,4 +18,5 @@ Bootstrap 4
 
 Architecture Diagram
 
-![Image of Architecture](https://github.com/dkeech/tomato/blob/master/architecture_diagram.JPG)
+![Image of Architecture](https://github.com/jordanpemberton/tomato/blob/master/miscDocs/architecture_diagram.JPG)
+
