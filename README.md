@@ -1,9 +1,9 @@
-# tomato
+# There's No Time Like Tomato
 OSU CS-361 Software Engineering I Term Project
 
 A Pomodoro-Style Timer Web App
 
-# Technology stack
+## Technology stack
 
 Frontend:
 * HTML 
@@ -20,25 +20,29 @@ Backend:
 
 
 
-Task Page
+### Tasks Page
 
-![Screenshot of Tasks Page](https://github.com/jordanpemberton/tomato/blob/master/miscDocs/tomato_documentation/Tasks.png)
+<!-- ![Screenshot of Tasks Page](https://github.com/jordanpemberton/tomato/blob/master/miscDocs/tomato_documentation/Tasks.png) -->
 
 ![Screenshot of Tasks Page, Creating Task](https://github.com/jordanpemberton/tomato/blob/master/miscDocs/tomato_documentation/TasksCreateTask.png)
 
-Category Page
+### Categories Page
 
 ![Screenshot of Category Page](https://github.com/jordanpemberton/tomato/blob/master/miscDocs/tomato_documentation/Categories.png)
 
-Timer Page
+### Timer Page
 
 ![Screenshot of Timer Page](https://github.com/jordanpemberton/tomato/blob/master/miscDocs/tomato_documentation/TimerInProgress.png)
 
+<!-- Work Countdown Warning
+
 ![Screenshot of Timer Page, Work Countdown Warning](https://github.com/jordanpemberton/tomato/blob/master/miscDocs/tomato_documentation/TimerWorkCountdownWarning.png)
 
-![Screenshot of Timer Page, Break Countdown Warning](https://github.com/jordanpemberton/tomato/blob/master/miscDocs/tomato_documentation/TimerBreakCountdownWarning.png)
+Break Countdown Warning
 
-Account Page
+![Screenshot of Timer Page, Break Countdown Warning](https://github.com/jordanpemberton/tomato/blob/master/miscDocs/tomato_documentation/TimerBreakCountdownWarning.png) -->
+
+### Account Page
 
 ![Screenshot of Account Page](https://github.com/jordanpemberton/tomato/blob/master/miscDocs/tomato_documentation/AccountPage.png)
 
