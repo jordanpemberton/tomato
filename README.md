@@ -1,5 +1,5 @@
 # There's No Time Like Tomato
-OSU CS-361 Software Engineering I Term Project
+### OSU CS-361 Software Engineering I Term Project
 
 A Pomodoro-Style Timer Web App
 
