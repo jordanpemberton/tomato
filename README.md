@@ -3,6 +3,14 @@
 
 A Pomodoro-Style Timer Web App
 
+### Authors: 
+* [Kepe Bonner](https://github.com/bonnerke)
+* [Casey Dinsmore](https://github.com/lunitin)
+* [Dan Keech](https://github.com/dkeech)
+* [Jordan Pemberton](https://github.com/jordanpemberton)
+* [Devin Swanson](https://github.com/dswan1992)
+
+
 ## Technology stack
 
 Frontend:
@@ -10,6 +18,7 @@ Frontend:
 * CSS
 * Javascript
 * Bootstrap 4
+* Chart.js
 
 Backend:
 * NodeJS
