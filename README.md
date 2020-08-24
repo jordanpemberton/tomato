@@ -3,7 +3,7 @@
 
 A Pomodoro-Style Timer Web App
 
-### Authors: 
+## Authors
 * [Kepe Bonner](https://github.com/bonnerke)
 * [Casey Dinsmore](https://github.com/lunitin)
 * [Dan Keech](https://github.com/dkeech)
